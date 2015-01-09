@@ -1,0 +1,17 @@
+mount	point	#
+		
+/system	ext4	/dev/block/platform/msm_sdcc.1/by-name/system
+/cache	ext4	/dev/block/platform/msm_sdcc.1/by-name/cache
+/data	ext4	/dev/block/platform/msm_sdcc.1/by-name/userdata
+/external_sd	vfat	/dev/block/mmcblk1p1
+/boot	emmc	/dev/block/platform/msm_sdcc.1/by-name/boot
+/recovery	emmc	/dev/block/platform/msm_sdcc.1/by-name/recovery
+/misc	emmc	/dev/block/platform/msm_sdcc.1/by-name/misc
+/persist	ext4	/dev/block/platform/msm_sdcc.1/by-name/persist
+/modem	emmc	/dev/block/platform/msm_sdcc.1/by-name/modem
+/sbl1	emmc	/dev/block/platform/msm_sdcc.1/by-name/sbl1
+/aboot	emmc	/dev/block/platform/msm_sdcc.1/by-name/aboot
+/rpm	emmc	/dev/block/platform/msm_sdcc.1/by-name/rpm
+/tz	emmc	/dev/block/platform/msm_sdcc.1/by-name/tz
+/splash	emmc	/dev/block/platform/msm_sdcc.1/by-name/splash
+/sdcard	vfat	/dev/block/platform/msm_sdcc.1/by-name/fat
