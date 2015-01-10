@@ -1,4 +1,5 @@
 #!/system/bin/sh
 
 # init.d support
-logcat -v time -d > last_log.txt
+rm -rf /data/local/tmp/last_log.txt
+logcat -v time >> /data/local/tmp/last_log.txt
