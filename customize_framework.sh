@@ -56,6 +56,9 @@ then
           rm -rf "$file"
       done
 
+      echo ">>> use custom smali files of Editor "
+      cp -rf overlay/framework/smali/* $BUILD_OUT/framework/smali
+
 fi
 
 if [ $2 = "$BUILD_OUT/framework2" ]
