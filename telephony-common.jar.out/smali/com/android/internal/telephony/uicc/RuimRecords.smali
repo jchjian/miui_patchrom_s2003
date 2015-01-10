@@ -106,7 +106,7 @@
 
     invoke-direct {v0, v1}, Lcom/android/internal/telephony/uicc/MiuiAdnRecordCache;-><init>(Lcom/android/internal/telephony/uicc/IccFileHandler;)V
 
-    iput-object v0, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iput-object v0, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     .line 109
     iput-boolean v2, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mRecordsRequested:Z
@@ -1878,9 +1878,9 @@
 
     .prologue
     .line 806
-    iget-object v0, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    invoke-virtual {v0}, Lzte/contact/zteAdnRecordCache;->reset()V
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->reset()V
 
     .line 807
     invoke-direct {p0}, Lcom/android/internal/telephony/uicc/RuimRecords;->fetchRuimRecords()V
@@ -2727,9 +2727,9 @@
     iput-object v0, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mIccId:Ljava/lang/String;
 
     .line 141
-    iget-object v0, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    invoke-virtual {v0}, Lzte/contact/zteAdnRecordCache;->reset()V
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->reset()V
 
     .line 152
     const/4 v0, 0x0

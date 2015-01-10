@@ -986,7 +986,7 @@
 
     invoke-direct {v0, v1}, Lcom/android/internal/telephony/uicc/MiuiAdnRecordCache;-><init>(Lcom/android/internal/telephony/uicc/IccFileHandler;)V
 
-    iput-object v0, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iput-object v0, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     .line 198
     new-instance v0, Lcom/android/internal/telephony/uicc/VoiceMailConstants;
@@ -3447,9 +3447,9 @@
     sparse-switch p1, :sswitch_data_0
 
     .line 1211
-    iget-object v0, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    invoke-virtual {v0}, Lzte/contact/zteAdnRecordCache;->reset()V
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->reset()V
 
     .line 1212
     invoke-virtual {p0}, Lcom/android/internal/telephony/uicc/SIMRecords;->fetchSimRecords()V
@@ -8160,9 +8160,9 @@
     iput-object v1, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mGid1:Ljava/lang/String;
 
     .line 240
-    iget-object v0, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    invoke-virtual {v0}, Lzte/contact/zteAdnRecordCache;->reset()V
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->reset()V
 
     .line 242
     const-string v0, "SIMRecords: onRadioOffOrNotAvailable set \'gsm.sim.operator.numeric\' to operator=null"

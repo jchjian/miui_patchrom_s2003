@@ -68,11 +68,7 @@
     .end annotation
 .end field
 
-.field protected mAdnCache:Lzte/contact/zteAdnRecordCache;
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->CHANGE_CODE:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
-.end field
+.field protected mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
 .field protected mBaseHandler:Landroid/os/Handler;
     .annotation build Landroid/annotation/KiwiHook;
@@ -157,17 +153,17 @@
     const/4 v1, 0x0
 
     .line 1016
-    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     if-eqz v0, :cond_0
 
     .line 1017
-    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    invoke-virtual {v0}, Lzte/contact/zteAdnRecordCache;->reset()V
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->reset()V
 
     .line 1018
-    iput-object v1, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iput-object v1, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     .line 1020
     :cond_0
@@ -379,20 +375,20 @@
 
     .line 1248
     .local v0, response:Landroid/os/Message;
-    iget-object v2, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v2, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     if-eqz v2, :cond_1
 
     .line 1249
-    iget-object v2, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v2, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    iget-object v4, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v4, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    invoke-virtual {v4, p1}, Lzte/contact/zteAdnRecordCache;->extensionEfForEf(I)I
+    invoke-virtual {v4, p1}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->extensionEfForEf(I)I
 
     move-result v4
 
-    invoke-virtual {v2, p1, v4, v0}, Lzte/contact/zteAdnRecordCache;->requestLoadAllAdnLike(IILandroid/os/Message;)V
+    invoke-virtual {v2, p1, v4, v0}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->requestLoadAllAdnLike(IILandroid/os/Message;)V
 
     .line 1250
     invoke-virtual {p0, v1}, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->waitForResult(Ljava/util/concurrent/atomic/AtomicBoolean;)V
@@ -1180,11 +1176,11 @@
 
     move-result-object v6
 
-    invoke-virtual {v6}, Lcom/android/internal/telephony/uicc/IccRecords;->getAdnCache()Lzte/contact/zteAdnRecordCache;
+    invoke-virtual {v6}, Lcom/android/internal/telephony/uicc/IccRecords;->getAdnCache()Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     move-result-object v6
 
-    iput-object v6, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iput-object v6, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     goto :goto_0
 
@@ -1355,12 +1351,12 @@
 
     .line 1199
     .local v2, newAdn:Lcom/android/internal/telephony/uicc/AdnRecord;
-    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     if-eqz v0, :cond_1
 
     .line 1200
-    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     const/4 v6, 0x0
 
@@ -1371,6 +1367,8 @@
     move v3, p4
 
     move-object v4, p5
+    
+    check-cast v0, Lzte/contact/zteAdnRecordCache;
 
     invoke-virtual/range {v0 .. v7}, Lzte/contact/zteAdnRecordCache;->updateAdnByIndex(ILcom/android/internal/telephony/uicc/AdnRecord;ILjava/lang/String;Landroid/os/Message;II)V
 
@@ -1592,16 +1590,18 @@
 
     .line 1150
     .local v3, newAdn:Lcom/android/internal/telephony/uicc/AdnRecord;
-    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     if-eqz v0, :cond_1
 
     .line 1151
-    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/IccPhoneBookInterfaceManager;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     move v1, p1
 
     move-object v4, p6
+
+    check-cast v0, Lzte/contact/zteAdnRecordCache;
 
     invoke-virtual/range {v0 .. v6}, Lzte/contact/zteAdnRecordCache;->updateAdnBySearch(ILcom/android/internal/telephony/uicc/AdnRecord;Lcom/android/internal/telephony/uicc/AdnRecord;Ljava/lang/String;Landroid/os/Message;I)[I
 
@@ -1724,3 +1724,4 @@
     :cond_0
     return-void
 .end method
+

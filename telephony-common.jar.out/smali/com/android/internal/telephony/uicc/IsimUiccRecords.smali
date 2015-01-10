@@ -43,30 +43,18 @@
     .parameter "app"
     .parameter "c"
     .parameter "ci"
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->CHANGE_CODE:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
 
     .prologue
-    const/4 v2, 0x0
+    const/4 v0, 0x0
 
     .line 70
     invoke-direct {p0, p1, p2, p3}, Lcom/android/internal/telephony/uicc/IccRecords;-><init>(Lcom/android/internal/telephony/uicc/UiccCardApplication;Landroid/content/Context;Lcom/android/internal/telephony/CommandsInterface;)V
 
-    .line 72
-    new-instance v0, Lzte/contact/zteAdnRecordCache;
-
-    iget-object v1, p0, Lcom/android/internal/telephony/uicc/IsimUiccRecords;->mFh:Lcom/android/internal/telephony/uicc/IccFileHandler;
-
-    invoke-direct {v0, v1}, Lzte/contact/zteAdnRecordCache;-><init>(Lcom/android/internal/telephony/uicc/IccFileHandler;)V
-
-    iput-object v0, p0, Lcom/android/internal/telephony/uicc/IsimUiccRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
-
     .line 74
-    iput-boolean v2, p0, Lcom/android/internal/telephony/uicc/IsimUiccRecords;->mRecordsRequested:Z
+    iput-boolean v0, p0, Lcom/android/internal/telephony/uicc/IsimUiccRecords;->mRecordsRequested:Z
 
     .line 77
-    iput v2, p0, Lcom/android/internal/telephony/uicc/IsimUiccRecords;->mRecordsToLoad:I
+    iput v0, p0, Lcom/android/internal/telephony/uicc/IsimUiccRecords;->mRecordsToLoad:I
 
     .line 79
     iget-object v0, p0, Lcom/android/internal/telephony/uicc/IsimUiccRecords;->mParentApp:Lcom/android/internal/telephony/uicc/UiccCardApplication;
@@ -925,3 +913,4 @@
 
     return-object v0
 .end method
+

@@ -41,7 +41,9 @@
 
 
 # instance fields
-.field protected mAdnCache:Lzte/contact/zteAdnRecordCache;
+.field protected mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
+
+.field protected mZAdnCache:Lzte/contact/zteAdnRecordCache;
     .annotation build Landroid/annotation/KiwiHook;
         value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->CHANGE_CODE:Landroid/annotation/KiwiHook$KiwiHookType;
     .end annotation
@@ -290,9 +292,9 @@
     invoke-virtual {p0, v0}, Lcom/android/internal/telephony/uicc/IccRecords;->log(Ljava/lang/String;)V
 
     .line 476
-    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    invoke-virtual {v0}, Lzte/contact/zteAdnRecordCache;->reset()V
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->reset()V
 
     goto :goto_0
 
@@ -320,9 +322,9 @@
 
     .line 492
     :cond_3
-    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    invoke-virtual {v0}, Lzte/contact/zteAdnRecordCache;->reset()V
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->reset()V
 
     goto :goto_0
 
@@ -991,7 +993,7 @@
 
     move-result-object v1
 
-    iget-object v2, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v2, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -1309,6 +1311,15 @@
     return-void
 .end method
 
+.method public getAdnCache()Lcom/android/internal/telephony/uicc/AdnRecordCache;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
+
+    return-object v0
+.end method
+
 .method public getAdnCache()Lzte/contact/zteAdnRecordCache;
     .locals 1
     .annotation build Landroid/annotation/KiwiHook;
@@ -1317,7 +1328,7 @@
 
     .prologue
     .line 192
-    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mZAdnCache:Lzte/contact/zteAdnRecordCache;
 
     return-object v0
 .end method
@@ -1754,9 +1765,9 @@
 
     .prologue
     .line 400
-    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
-    invoke-virtual {v0}, Lzte/contact/zteAdnRecordCache;->reset()V
+    invoke-virtual {v0}, Lcom/android/internal/telephony/uicc/AdnRecordCache;->reset()V
 
     .line 401
     iget-object v0, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mParentApp:Lcom/android/internal/telephony/uicc/UiccCardApplication;
@@ -2268,7 +2279,7 @@
 
     move-result-object v0
 
-    iget-object v1, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
+    iget-object v1, p0, Lcom/android/internal/telephony/uicc/IccRecords;->mAdnCache:Lcom/android/internal/telephony/uicc/AdnRecordCache;
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
 
@@ -2518,3 +2529,4 @@
     .line 213
     return-void
 .end method
+
