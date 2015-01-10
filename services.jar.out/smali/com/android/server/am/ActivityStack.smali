@@ -231,8 +231,6 @@
     .line 265
     sput-boolean v1, Lcom/android/server/am/ActivityStack;->bScreenOn:Z
 
-    invoke-static {p0, p1}, Lcom/android/server/am/Injector$ActivityStackHook;->after_ActivityStack(Lcom/android/server/am/ActivityStack;Lcom/android/server/am/ActivityManagerService;)V
-
     return-void
 
     :cond_0
@@ -414,6 +412,8 @@
     iput-object v0, p0, Lcom/android/server/am/ActivityStack;->mAppProfileService:Lcom/qualcomm/snapdragon/util/QcAppProfileService;
 
     .line 410
+    invoke-static {p0, p1}, Lcom/android/server/am/Injector$ActivityStackHook;->after_ActivityStack(Lcom/android/server/am/ActivityStack;Lcom/android/server/am/ActivityManagerService;)V
+
     return-void
 .end method
 
@@ -14985,3 +14985,4 @@
     .line 3510
     goto :goto_2
 .end method
+
