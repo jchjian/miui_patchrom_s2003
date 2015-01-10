@@ -10679,6 +10679,16 @@
     .end local v16           #proxy:Landroid/net/ProxyProperties;
     :cond_4
     :goto_2
+    invoke-virtual {v3}, Lcom/android/internal/telephony/dataconnection/ApnContext;->getDataProfile()Lcom/android/internal/telephony/dataconnection/DataProfile;
+
+    move-result-object v17
+
+    check-cast v17, Lcom/android/internal/telephony/dataconnection/ApnSetting;
+
+    move-object/from16 v0, v17
+
+    invoke-static {v3, v0}, Lcom/android/internal/telephony/dataconnection/Injector$DcTrackerHook;->onDataSetupComplete(Lcom/android/internal/telephony/dataconnection/ApnContext;Lcom/android/internal/telephony/dataconnection/ApnSetting;)V
+
     invoke-virtual {v3}, Lcom/android/internal/telephony/dataconnection/ApnContext;->getDataProfileType()Ljava/lang/String;
 
     move-result-object v17
@@ -11554,12 +11564,18 @@
 
     invoke-virtual {p0, v2}, Lcom/android/internal/telephony/dataconnection/DcTracker;->log(Ljava/lang/String;)V
 
-    .line 2006
     sget-object v2, Lcom/android/internal/telephony/DctConstants$State;->IDLE:Lcom/android/internal/telephony/DctConstants$State;
 
     invoke-virtual {v0, v2}, Lcom/android/internal/telephony/dataconnection/ApnContext;->setState(Lcom/android/internal/telephony/DctConstants$State;)V
 
-    .line 2008
+    invoke-virtual {v0}, Lcom/android/internal/telephony/dataconnection/ApnContext;->getDataProfile()Lcom/android/internal/telephony/dataconnection/DataProfile;
+
+    move-result-object v2
+
+    check-cast v2, Lcom/android/internal/telephony/dataconnection/ApnSetting;
+
+    invoke-static {v0, v2}, Lcom/android/internal/telephony/dataconnection/Injector$DcTrackerHook;->onDisconnectDone(Lcom/android/internal/telephony/dataconnection/ApnContext;Lcom/android/internal/telephony/dataconnection/ApnSetting;)V
+
     iget-object v2, p0, Lcom/android/internal/telephony/dataconnection/DcTracker;->mPhone:Lcom/android/internal/telephony/PhoneBase;
 
     invoke-virtual {v0}, Lcom/android/internal/telephony/dataconnection/ApnContext;->getReason()Ljava/lang/String;
@@ -12811,3 +12827,4 @@
     .line 311
     return-void
 .end method
+

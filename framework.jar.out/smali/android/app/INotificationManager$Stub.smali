@@ -30,6 +30,8 @@
 
 .field static final TRANSACTION_ZTESetNotificationsEnabledForPackage:I = 0x9
 
+.field static final TRANSACTION_areNotificationsEnabled:I = 0x11
+
 .field static final TRANSACTION_areNotificationsEnabledForPackage:I = 0x7
 
 .field static final TRANSACTION_cancelAllNotifications:I = 0x1
@@ -789,22 +791,51 @@
 
     move-result-object v1
 
-    .line 249
     .restart local v1       #_arg0:Landroid/service/notification/INotificationListener;
     invoke-virtual {p0, v1}, Landroid/app/INotificationManager$Stub;->getActiveNotificationsFromListener(Landroid/service/notification/INotificationListener;)[Landroid/service/notification/StatusBarNotification;
 
     move-result-object v8
 
-    .line 250
     .restart local v8       #_result:[Landroid/service/notification/StatusBarNotification;
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    .line 251
     invoke-virtual {p3, v8, v9}, Landroid/os/Parcel;->writeTypedArray([Landroid/os/Parcelable;I)V
 
     goto/16 :goto_0
 
-    .line 39
+    .end local v1           #_arg0:Landroid/service/notification/INotificationListener;
+    .end local v8           #_result:[Landroid/service/notification/StatusBarNotification;
+    :sswitch_11
+    const-string v0, "android.app.INotificationManager"
+
+    invoke-virtual {p2, v0}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
+
+    invoke-virtual {p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
+
+    move-result-object v1
+
+    .local v1, _arg0:Ljava/lang/String;
+    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
+
+    move-result v2
+
+    .local v2, _arg1:I
+    invoke-virtual {p0, v1, v2}, Landroid/app/INotificationManager$Stub;->areNotificationsEnabled(Ljava/lang/String;I)Z
+
+    move-result v8
+
+    .local v8, _result:Z
+    invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
+
+    if-eqz v8, :cond_miui_0
+
+    move v3, v9
+
+    :cond_miui_0
+    invoke-virtual {p3, v3}, Landroid/os/Parcel;->writeInt(I)V
+
+    goto/16 :goto_0
+
     nop
 
     :sswitch_data_0
@@ -825,6 +856,7 @@
         0xe -> :sswitch_e
         0xf -> :sswitch_f
         0x10 -> :sswitch_10
+        0x11 -> :sswitch_11
         0x5f4e5446 -> :sswitch_0
     .end sparse-switch
 .end method

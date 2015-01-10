@@ -157,6 +157,10 @@
     .line 3061
     move-object/from16 v0, p1
 
+    invoke-static {v0}, Landroid/net/wifi/Injector$WifiStateMachineHook$SupplicantStartedState;->processMessage(Landroid/os/Message;)V
+
+    move-object/from16 v0, p1
+
     iget v10, v0, Landroid/os/Message;->what:I
 
     sparse-switch v10, :sswitch_data_0

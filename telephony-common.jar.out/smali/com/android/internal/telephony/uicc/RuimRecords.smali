@@ -100,11 +100,11 @@
     iput-boolean v2, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mCsimSpnDisplayCondition:Z
 
     .line 107
-    new-instance v0, Lzte/contact/zteAdnRecordCache;
+    new-instance v0, Lcom/android/internal/telephony/uicc/MiuiAdnRecordCache;
 
     iget-object v1, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mFh:Lcom/android/internal/telephony/uicc/IccFileHandler;
 
-    invoke-direct {v0, v1}, Lzte/contact/zteAdnRecordCache;-><init>(Lcom/android/internal/telephony/uicc/IccFileHandler;)V
+    invoke-direct {v0, v1}, Lcom/android/internal/telephony/uicc/MiuiAdnRecordCache;-><init>(Lcom/android/internal/telephony/uicc/IccFileHandler;)V
 
     iput-object v0, p0, Lcom/android/internal/telephony/uicc/RuimRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
 
@@ -2948,3 +2948,4 @@
 
     return-object v0
 .end method
+

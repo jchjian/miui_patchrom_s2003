@@ -9445,6 +9445,10 @@
 
     .line 535
     .local v2, plmn:Ljava/lang/String;
+    invoke-static {p0, v2}, Lcom/android/internal/telephony/Injector$ServiceStateTrackerHook;->getSpn(Lcom/android/internal/telephony/ServiceStateTracker;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+
     new-instance v7, Ljava/lang/StringBuilder;
 
     invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
@@ -9622,3 +9626,4 @@
     .line 552
     goto :goto_0
 .end method
+

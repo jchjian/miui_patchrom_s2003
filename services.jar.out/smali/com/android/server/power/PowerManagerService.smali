@@ -73,6 +73,8 @@
 
 .field private static final MSG_USER_ACTIVITY_TIMEOUT:I = 0x1
 
+.field private static final NOTIFIER_THREAD_NAME:Ljava/lang/String; = "PMSNotifier"
+
 .field private static final SCREEN_DIM_DURATION:I = 0x1b58
 
 .field private static final TAG:Ljava/lang/String; = "PowerManagerService"
@@ -193,6 +195,8 @@
 .field private mMaximumScreenOffTimeoutFromDeviceAdmin:I
 
 .field private mNotifier:Lcom/android/server/power/Notifier;
+
+.field private mNotifierThread:Landroid/os/HandlerThread;
 
 .field private mPlugType:I
 
@@ -5316,14 +5320,16 @@
 
     iput v3, p0, Lcom/android/server/power/PowerManagerService;->mScreenBrightnessModeSetting:I
 
-    .line 580
     iget v3, p0, Lcom/android/server/power/PowerManagerService;->mDirty:I
 
     or-int/lit8 v3, v3, 0x20
 
     iput v3, p0, Lcom/android/server/power/PowerManagerService;->mDirty:I
 
-    .line 581
+    iget-object v3, p0, Lcom/android/server/power/PowerManagerService;->mContext:Landroid/content/Context;
+
+    invoke-static {v3}, Lcom/android/server/power/PowerManagerService$Injector;->updateButtonLightTimeout(Landroid/content/Context;)V
+
     return-void
 
     .end local v0           #oldScreenAutoBrightnessAdjustmentSetting:F
@@ -6461,6 +6467,8 @@
     move-result-object v3
 
     invoke-static {v2, v3}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    invoke-static {}, Lcom/android/server/power/PowerManagerService$Injector;->setButtonLightTimeout()V
 
     .line 998
     iget-wide v2, p0, Lcom/android/server/power/PowerManagerService;->mLastSleepTime:J
@@ -8662,12 +8670,22 @@
 
     iput-object v0, p0, Lcom/android/server/power/PowerManagerService;->mHandlerThread:Landroid/os/HandlerThread;
 
-    .line 415
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mHandlerThread:Landroid/os/HandlerThread;
 
     invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
 
-    .line 416
+    new-instance v0, Landroid/os/HandlerThread;
+
+    const-string v1, "PMSNotifier"
+
+    invoke-direct {v0, v1}, Landroid/os/HandlerThread;-><init>(Ljava/lang/String;)V
+
+    iput-object v0, p0, Lcom/android/server/power/PowerManagerService;->mNotifierThread:Landroid/os/HandlerThread;
+
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mNotifierThread:Landroid/os/HandlerThread;
+
+    invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
+
     new-instance v0, Lcom/android/server/power/PowerManagerService$PowerManagerHandler;
 
     iget-object v1, p0, Lcom/android/server/power/PowerManagerService;->mHandlerThread:Landroid/os/HandlerThread;
@@ -8702,12 +8720,14 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/server/Watchdog;->addThread(Landroid/os/Handler;Ljava/lang/String;)V
 
-    .line 427
     iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mDisplayBlanker:Lcom/android/server/power/PowerManagerService$DisplayBlankerImpl;
 
     invoke-virtual {v0}, Lcom/android/server/power/PowerManagerService$DisplayBlankerImpl;->unblankAllDisplays()V
 
-    .line 428
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mHandler:Lcom/android/server/power/PowerManagerService$PowerManagerHandler;
+
+    invoke-static {v0}, Lcom/android/server/power/PowerManagerService$Injector;->setHandler(Landroid/os/Handler;)V
+
     return-void
 .end method
 
@@ -9457,7 +9477,11 @@
     .local v17, sensorManager:Landroid/hardware/SensorManager;
     new-instance v2, Lcom/android/server/power/Notifier;
 
-    invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
+    move-object/from16 v0, p0
+
+    iget-object v3, v0, Lcom/android/server/power/PowerManagerService;->mNotifierThread:Landroid/os/HandlerThread;
+
+    invoke-virtual {v3}, Landroid/os/HandlerThread;->getLooper()Landroid/os/Looper;
 
     move-result-object v3
 
@@ -9930,16 +9954,26 @@
 
     iput v2, v0, Lcom/android/server/power/PowerManagerService;->mDirty:I
 
-    .line 517
     invoke-direct/range {p0 .. p0}, Lcom/android/server/power/PowerManagerService;->updatePowerStateLocked()V
 
-    .line 518
     monitor-exit v18
 
-    .line 519
+    move-object/from16 v0, p0
+
+    iget-object v2, v0, Lcom/android/server/power/PowerManagerService;->mLightsService:Lcom/android/server/LightsService;
+
+    const/4 v3, 0x2
+
+    invoke-virtual {v2, v3}, Lcom/android/server/LightsService;->getLight(I)Lcom/android/server/LightsService$Light;
+
+    move-result-object v2
+
+    move-object/from16 v0, p0
+
+    invoke-static {v0, v2}, Lcom/android/server/power/PowerManagerService$Injector;->setButtonLight(Lcom/android/server/power/PowerManagerService;Lcom/android/server/LightsService$Light;)V
+
     return-void
 
-    .line 518
     .end local v14           #filter:Landroid/content/IntentFilter;
     .end local v15           #pm:Landroid/os/PowerManager;
     .end local v16           #resolver:Landroid/content/ContentResolver;
@@ -10541,4 +10575,53 @@
     invoke-static {v0, v1}, Landroid/os/Binder;->restoreCallingIdentity(J)V
 
     throw v2
+.end method
+
+.method static synthetic invokeNativeSetAutoSuspend(Z)V
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    invoke-static {p0}, Lcom/android/server/power/PowerManagerService;->nativeSetAutoSuspend(Z)V
+
+    return-void
+.end method
+
+.method static synthetic invokeNtiveSetInteractive(Z)V
+    .locals 0
+    .parameter "x0"
+
+    .prologue
+    invoke-static {p0}, Lcom/android/server/power/PowerManagerService;->nativeSetInteractive(Z)V
+
+    return-void
+.end method
+
+.method getContext()Landroid/content/Context;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mContext:Landroid/content/Context;
+
+    return-object v0
+.end method
+
+.method getSettingsObserver()Lcom/android/server/power/PowerManagerService$SettingsObserver;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Lcom/android/server/power/PowerManagerService;->mSettingsObserver:Lcom/android/server/power/PowerManagerService$SettingsObserver;
+
+    return-object v0
+.end method
+
+.method callGetDesiredScreenPowerStateLocked()I
+    .locals 1
+
+    .prologue
+    invoke-direct {p0}, Lcom/android/server/power/PowerManagerService;->getDesiredScreenPowerStateLocked()I
+
+    move-result v0
+
+    return v0
 .end method

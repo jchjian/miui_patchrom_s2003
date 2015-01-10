@@ -33,6 +33,10 @@
 
 .field private static final DEBUG_PRETEND_PROXIMITY_SENSOR_ABSENT:Z = false
 
+.field private static final DEFALUT_SCREEN_COLOR:I = 0x2
+
+.field private static final DEFAULT_SCREEN_SATURATION:I = 0xb
+
 .field private static final ELECTRON_BEAM_OFF_ANIMATION_DURATION_MILLIS:I = 0x190
 
 .field private static final ELECTRON_BEAM_ON_ANIMATION_DURATION_MILLIS:I = 0xfa
@@ -46,6 +50,10 @@
 .field private static final MSG_PROXIMITY_SENSOR_DEBOUNCED:I = 0x2
 
 .field private static final MSG_UPDATE_POWER_STATE:I = 0x1
+
+.field private static final PROPERTY_SCREEN_COLOR:Ljava/lang/String; = "persist.sys.display_prefer"
+
+.field private static final PROPERTY_SCREEN_SATURATION:Ljava/lang/String; = "persist.sys.display_ce"
 
 .field private static final PROXIMITY_NEGATIVE:I = 0x0
 
@@ -3142,6 +3150,116 @@
     goto :goto_0
 .end method
 
+.method public static setScreenColor()V
+    .locals 6
+
+    .prologue
+    const/16 v5, 0xb
+
+    const/4 v4, 0x2
+
+    const-string v1, "persist.sys.display_prefer"
+
+    invoke-static {v1, v4}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+
+    move-result v0
+
+    .local v0, currValue:I
+    const-string v1, "DisplayPowerController"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "PROPERTY_SCREEN_COLOR set, currValue:"
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v3, ", default:"
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    if-eq v0, v4, :cond_0
+
+    const-string v1, "persist.sys.display_prefer"
+
+    invoke-static {v0}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
+
+    :cond_0
+    const-string v1, "persist.sys.display_ce"
+
+    invoke-static {v1, v5}, Landroid/os/SystemProperties;->getInt(Ljava/lang/String;I)I
+
+    move-result v0
+
+    const-string v1, "DisplayPowerController"
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "PROPERTY_SCREEN_SATURATION set, currValue:"
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v0}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    const-string v3, ", default:"
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, v5}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    if-eq v0, v5, :cond_1
+
+    const-string v1, "persist.sys.display_ce"
+
+    invoke-static {v0}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-static {v1, v2}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
+
+    :cond_1
+    return-void
+.end method
+
 .method private setScreenOn(Z)V
     .locals 1
     .parameter "on"
@@ -3161,31 +3279,27 @@
     :goto_0
     if-ne v0, p1, :cond_0
 
-    .line 920
     iget-object v0, p0, Lcom/android/server/power/DisplayPowerController;->mPowerState:Lcom/android/server/power/DisplayPowerState;
 
     invoke-virtual {v0, p1}, Lcom/android/server/power/DisplayPowerState;->setScreenOn(Z)V
 
-    .line 921
     if-eqz p1, :cond_2
 
-    .line 922
     iget-object v0, p0, Lcom/android/server/power/DisplayPowerController;->mNotifier:Lcom/android/server/power/Notifier;
 
     invoke-virtual {v0}, Lcom/android/server/power/Notifier;->onScreenOn()V
 
-    .line 927
-    :cond_0
     :goto_1
+    invoke-static {p1}, Lcom/android/server/power/PowerManagerService$Injector;->setScreenOn(Z)V
+
+    :cond_0
     return-void
 
-    .line 919
     :cond_1
     const/4 v0, 0x0
 
     goto :goto_0
 
-    .line 924
     :cond_2
     iget-object v0, p0, Lcom/android/server/power/DisplayPowerController;->mNotifier:Lcom/android/server/power/Notifier;
 

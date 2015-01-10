@@ -464,9 +464,7 @@
     .prologue
     .line 128
     .local p5, rList:Ljava/util/List;,"Ljava/util/List<Landroid/content/pm/ResolveInfo;>;"
-    invoke-static {p0}, Landroid/content/res/Resources;->getAlertDialogTheme(Landroid/content/Context;)I
-
-    move-result v1
+    const v1, 0x103030e
 
     invoke-virtual {p0, v1}, Lcom/android/internal/app/ResolverActivity;->setTheme(I)V
 

@@ -54,7 +54,7 @@
 
 .field static final MAX_EXT_CALLED_PARTY_LENGTH:I = 0xa
 
-.field static final MAX_NUMBER_SIZE_BYTES:I = 0xb
+.field static final MAX_NUMBER_SIZE_BYTES:I = 0xff
 
 
 # instance fields
@@ -934,35 +934,29 @@
 
     iput-object v3, p0, Lcom/android/internal/telephony/uicc/AdnRecord;->mAlphaTag:Ljava/lang/String;
 
-    .line 691
     array-length v3, p1
 
     add-int/lit8 v1, v3, -0xe
 
-    .line 693
     .local v1, footerOffset:I
     aget-byte v3, p1, v1
 
     and-int/lit16 v2, v3, 0xff
 
-    .line 695
     .local v2, numberLength:I
-    const/16 v3, 0xb
+    const/16 v3, 0xff
 
     if-le v2, v3, :cond_0
 
-    .line 697
     const-string v3, ""
 
     iput-object v3, p0, Lcom/android/internal/telephony/uicc/AdnRecord;->mNumber:Ljava/lang/String;
 
-    .line 723
     .end local v1           #footerOffset:I
     .end local v2           #numberLength:I
     :goto_0
     return-void
 
-    .line 708
     .restart local v1       #footerOffset:I
     .restart local v2       #numberLength:I
     :cond_0
@@ -1352,17 +1346,11 @@
     if-nez v5, :cond_1
 
     .line 641
+    const-string v2, "AdnRecord"
+
     iget-object v5, p0, Lcom/android/internal/telephony/uicc/AdnRecord;->mAlphaTag:Ljava/lang/String;
 
-    invoke-static {v5}, Lcom/android/internal/telephony/uicc/IccUtils;->stringToAdnStringField(Ljava/lang/String;)[B
-
-    move-result-object v2
-
-    .line 642
-    .local v2, byteTag:[B
-    array-length v5, v2
-
-    invoke-static {v2, v9, v0, v9, v5}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+    invoke-static {v2, v0, v5, v3}, Lcom/android/internal/telephony/uicc/Injector$AdnRecordHook;->encodeAlphaTag(Ljava/lang/String;[BLjava/lang/String;I)Z
 
     goto :goto_1
 .end method
@@ -2026,3 +2014,4 @@
     .line 593
     return-void
 .end method
+

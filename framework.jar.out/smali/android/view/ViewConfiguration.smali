@@ -376,20 +376,6 @@
 
     iput v10, p0, Landroid/view/ViewConfiguration;->mMaximumDrawingCacheSize:I
 
-    .line 295
-    const/4 v10, 0x0
-
-    mul-float/2addr v10, v7
-
-    const/high16 v11, 0x3f00
-
-    add-float/2addr v10, v11
-
-    float-to-int v10, v10
-
-    iput v10, p0, Landroid/view/ViewConfiguration;->mOverscrollDistance:I
-
-    .line 296
     const/high16 v10, 0x40c0
 
     mul-float/2addr v10, v7
@@ -400,19 +386,36 @@
 
     float-to-int v10, v10
 
+    invoke-static {p1, v10}, Landroid/view/Injector$ViewConfigurationHook;->getOverscrollDistance(Landroid/content/Context;I)I
+
+    move-result v10
+
+    iput v10, p0, Landroid/view/ViewConfiguration;->mOverscrollDistance:I
+
+    const/high16 v10, 0x40c0
+
+    mul-float/2addr v10, v7
+
+    const/high16 v11, 0x3f00
+
+    add-float/2addr v10, v11
+
+    float-to-int v10, v10
+
+    invoke-static {p1, v10}, Landroid/view/Injector$ViewConfigurationHook;->getOverflingDistance(Landroid/content/Context;I)I
+
+    move-result v10
+
     iput v10, p0, Landroid/view/ViewConfiguration;->mOverflingDistance:I
 
-    .line 298
     iget-boolean v10, p0, Landroid/view/ViewConfiguration;->sHasPermanentMenuKeySet:Z
 
     if-nez v10, :cond_0
 
-    .line 299
     invoke-static {}, Landroid/view/WindowManagerGlobal;->getWindowManagerService()Landroid/view/IWindowManager;
 
     move-result-object v9
 
-    .line 302
     .local v9, wm:Landroid/view/IWindowManager;
     :try_start_0
     invoke-direct {p0, p1}, Landroid/view/ViewConfiguration;->zteConfigProductName(Landroid/content/Context;)Z
@@ -421,6 +424,7 @@
 
     if-eqz v10, :cond_2
 
+    .line 295
     .line 303
     const/4 v10, 0x0
 
@@ -523,12 +527,32 @@
     goto :goto_3
 .end method
 
+.method static callConstructor(Landroid/content/Context;)Landroid/view/ViewConfiguration;
+    .locals 1
+    .parameter "context"
+
+    .prologue
+    new-instance v0, Landroid/view/ViewConfiguration;
+
+    invoke-direct {v0, p0}, Landroid/view/ViewConfiguration;-><init>(Landroid/content/Context;)V
+
+    return-object v0
+.end method
+
 .method public static get(Landroid/content/Context;)Landroid/view/ViewConfiguration;
     .locals 5
     .parameter "context"
 
     .prologue
-    .line 338
+    invoke-static {p0}, Landroid/view/Injector$ViewConfigurationHook;->get(Landroid/content/Context;)Landroid/view/ViewConfiguration;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_miui
+
+    return-object v0
+
+    :cond_miui
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v3

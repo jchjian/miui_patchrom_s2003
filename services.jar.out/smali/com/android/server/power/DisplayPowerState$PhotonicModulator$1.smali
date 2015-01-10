@@ -295,6 +295,8 @@
 
     invoke-interface {v7}, Lcom/android/server/power/DisplayBlanker;->unblankAllDisplays()V
 
+    invoke-static {}, Lcom/android/server/power/DisplayPowerController;->setScreenColor()V
+
     .line 473
     :cond_8
     if-eqz v1, :cond_9

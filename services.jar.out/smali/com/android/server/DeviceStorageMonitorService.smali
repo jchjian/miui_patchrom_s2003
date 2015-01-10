@@ -1267,15 +1267,8 @@
     .line 387
     new-instance v2, Landroid/content/Intent;
 
-    invoke-static {}, Landroid/os/Environment;->isExternalStorageEmulated()Z
+    const-string v0, "miui.intent.action.GARBAGE_CLEANUP"
 
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    const-string v0, "android.settings.INTERNAL_STORAGE_SETTINGS"
-
-    :goto_0
     invoke-direct {v2, v0}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
 
     .line 390
@@ -1334,41 +1327,48 @@
 
     move-result-object v7
 
-    .line 401
     .local v7, intent:Landroid/app/PendingIntent;
     new-instance v9, Landroid/app/Notification;
 
     invoke-direct {v9}, Landroid/app/Notification;-><init>()V
 
-    .line 402
     .local v9, notification:Landroid/app/Notification;
-    const v0, 0x1080585
+    const v0, 0x6020361
 
     iput v0, v9, Landroid/app/Notification;->icon:I
 
-    .line 403
+    iget-object v0, p0, Lcom/android/server/DeviceStorageMonitorService;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+
+    move-result-object v0
+
+    const v1, 0x6020360
+
+    invoke-static {v0, v1}, Landroid/graphics/BitmapFactory;->decodeResource(Landroid/content/res/Resources;I)Landroid/graphics/Bitmap;
+
+    move-result-object v0
+
+    iput-object v0, v9, Landroid/app/Notification;->largeIcon:Landroid/graphics/Bitmap;
+
     iput-object v10, v9, Landroid/app/Notification;->tickerText:Ljava/lang/CharSequence;
 
-    .line 404
     iget v0, v9, Landroid/app/Notification;->flags:I
 
     or-int/lit8 v0, v0, 0x20
 
     iput v0, v9, Landroid/app/Notification;->flags:I
 
-    .line 405
     iget-object v0, p0, Lcom/android/server/DeviceStorageMonitorService;->mContext:Landroid/content/Context;
 
     invoke-virtual {v9, v0, v10, v6, v7}, Landroid/app/Notification;->setLatestEventInfo(Landroid/content/Context;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/app/PendingIntent;)V
 
-    .line 406
     const/4 v0, 0x1
 
     sget-object v1, Landroid/os/UserHandle;->ALL:Landroid/os/UserHandle;
 
     invoke-virtual {v8, v4, v0, v9, v1}, Landroid/app/NotificationManager;->notifyAsUser(Ljava/lang/String;ILandroid/app/Notification;Landroid/os/UserHandle;)V
 
-    .line 408
     iget-object v0, p0, Lcom/android/server/DeviceStorageMonitorService;->mContext:Landroid/content/Context;
 
     iget-object v1, p0, Lcom/android/server/DeviceStorageMonitorService;->mStorageLowIntent:Landroid/content/Intent;
@@ -1387,10 +1387,6 @@
     .end local v8           #mNotificationMgr:Landroid/app/NotificationManager;
     .end local v9           #notification:Landroid/app/Notification;
     .end local v10           #title:Ljava/lang/CharSequence;
-    :cond_0
-    const-string v0, "android.intent.action.MANAGE_PACKAGE_STORAGE"
-
-    goto :goto_0
 .end method
 
 

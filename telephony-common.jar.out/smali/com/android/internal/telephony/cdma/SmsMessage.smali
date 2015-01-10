@@ -1564,7 +1564,11 @@
     .local v14, parameterId:I
     invoke-virtual {v8}, Ljava/io/DataInputStream;->readUnsignedByte()I
 
-    move-result v15
+    move-result v21
+
+    move/from16 v0, v21
+
+    and-int/lit16 v15, v0, 0xff
 
     .line 623
     .local v15, parameterLen:I
@@ -2368,6 +2372,10 @@
 
     .prologue
     .line 914
+    invoke-static {p0}, Lmiui/telephony/PhoneNumberUtils$PhoneNumber;->replaceCdmaInternationalAccessCode(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object p0
+
     invoke-static {p0}, Landroid/telephony/PhoneNumberUtils;->cdmaCheckAndProcessPlusCodeForSms(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v12
@@ -3933,3 +3941,4 @@
 
     goto/16 :goto_1
 .end method
+

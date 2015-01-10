@@ -1181,6 +1181,15 @@
     goto :goto_0
 .end method
 
+.method getContext()Landroid/content/Context;
+    .locals 1
+
+    .prologue
+    iget-object v0, p0, Landroid/media/AudioManager;->mContext:Landroid/content/Context;
+
+    return-object v0
+.end method
+
 .method public getDevicesForStream(I)I
     .locals 1
     .parameter "streamType"
@@ -1703,28 +1712,34 @@
     .parameter "streamType"
 
     .prologue
-    .line 787
+    const/4 v2, 0x0
+
+    invoke-static {p0, p1}, Landroid/media/Injector$AudioManagerHook;->before_getStreamVolume(Landroid/media/AudioManager;I)Z
+
+    move-result v3
+
+    if-eqz v3, :cond_miui
+
+    return v2
+
+    :cond_miui
     invoke-static {}, Landroid/media/AudioManager;->getService()Landroid/media/IAudioService;
 
     move-result-object v1
 
-    .line 789
     .local v1, service:Landroid/media/IAudioService;
     :try_start_0
     iget-boolean v2, p0, Landroid/media/AudioManager;->mUseMasterVolume:Z
 
     if-eqz v2, :cond_0
 
-    .line 790
     invoke-interface {v1}, Landroid/media/IAudioService;->getMasterVolume()I
 
     move-result v2
 
-    .line 796
     :goto_0
     return v2
 
-    .line 792
     :cond_0
     invoke-interface {v1, p1}, Landroid/media/IAudioService;->getStreamVolume(I)I
     :try_end_0

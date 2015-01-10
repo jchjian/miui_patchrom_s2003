@@ -980,11 +980,11 @@
     iput-object v2, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mPnnHomeName:Ljava/lang/String;
 
     .line 196
-    new-instance v0, Lzte/contact/zteAdnRecordCache;
+    new-instance v0, Lcom/android/internal/telephony/uicc/MiuiAdnRecordCache;
 
     iget-object v1, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mFh:Lcom/android/internal/telephony/uicc/IccFileHandler;
 
-    invoke-direct {v0, v1}, Lzte/contact/zteAdnRecordCache;-><init>(Lcom/android/internal/telephony/uicc/IccFileHandler;)V
+    invoke-direct {v0, v1}, Lcom/android/internal/telephony/uicc/MiuiAdnRecordCache;-><init>(Lcom/android/internal/telephony/uicc/IccFileHandler;)V
 
     iput-object v0, p0, Lcom/android/internal/telephony/uicc/SIMRecords;->mAdnCache:Lzte/contact/zteAdnRecordCache;
 
@@ -4912,7 +4912,7 @@
 
     array-length v4, v11
 
-    invoke-static {v11, v2, v4}, Lcom/android/internal/telephony/uicc/IccUtils;->bcdToString([BII)Ljava/lang/String;
+    invoke-static {v11, v2, v4}, Lcom/android/internal/telephony/uicc/IccUtils;->parseIccIdToString([BII)Ljava/lang/String;
 
     move-result-object v2
 
@@ -9109,3 +9109,4 @@
 
     return-object v0
 .end method
+

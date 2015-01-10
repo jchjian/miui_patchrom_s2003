@@ -231,6 +231,8 @@
     .line 265
     sput-boolean v1, Lcom/android/server/am/ActivityStack;->bScreenOn:Z
 
+    invoke-static {p0, p1}, Lcom/android/server/am/Injector$ActivityStackHook;->after_ActivityStack(Lcom/android/server/am/ActivityStack;Lcom/android/server/am/ActivityManagerService;)V
+
     return-void
 
     :cond_0
@@ -3416,36 +3418,32 @@
     :goto_1
     if-ltz v1, :cond_4
 
-    .line 2869
     invoke-virtual {v0, v1}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
 
     move-result-object v4
 
     check-cast v4, Lcom/android/server/am/ActivityRecord;
 
-    .line 2870
     .local v4, r:Lcom/android/server/am/ActivityRecord;
-    iget-boolean v6, v4, Lcom/android/server/am/ActivityRecord;->finishing:Z
+    invoke-static {p3, v4}, Lcom/android/server/am/Injector$ActivityStackHook;->destroyHomeOrFinishing(Ljava/lang/String;Lcom/android/server/am/ActivityRecord;)Z
+
+    move-result v6
 
     if-eqz v6, :cond_1
 
-    .line 2868
     :cond_0
     :goto_2
     add-int/lit8 v1, v1, -0x1
 
     goto :goto_1
 
-    .line 2873
     :cond_1
     iget-boolean v6, v4, Lcom/android/server/am/ActivityRecord;->fullscreen:Z
 
     if-eqz v6, :cond_2
 
-    .line 2874
     const/4 v3, 0x1
 
-    .line 2876
     :cond_2
     if-eqz p1, :cond_3
 
@@ -4738,6 +4736,17 @@
 
     .line 3400
     :cond_7
+    invoke-static {p1, v0}, Lcom/android/server/am/Injector$ActivityStackHook;->needRestartActivity(Lcom/android/server/am/ActivityRecord;I)Z
+
+    move-result v5
+
+    if-eqz v5, :cond_miui_0
+
+    const/4 v5, 0x1
+
+    return v5
+
+    :cond_miui_0
     iget v5, p1, Lcom/android/server/am/ActivityRecord;->configChangeFlags:I
 
     or-int/2addr v5, v0
@@ -10379,6 +10388,10 @@
 
     move-result v0
 
+    invoke-static {p0, v0}, Lcom/android/server/am/Injector$ActivityStackHook;->setForegroundProcess(Lcom/android/server/am/ActivityStack;Z)Z
+
+    move-result v0
+
     return v0
 .end method
 
@@ -12741,14 +12754,14 @@
     .parameter "options"
 
     .prologue
-    .line 1825
+    invoke-static {}, Lcom/android/server/am/Injector$ActivityStackHook;->before_startActivityLocked()V
+
     move-object/from16 v0, p1
 
     iget-object v0, v0, Lcom/android/server/am/ActivityRecord;->task:Lcom/android/server/am/TaskRecord;
 
     move-object/from16 v18, v0
 
-    .line 1826
     .local v18, rTask:Lcom/android/server/am/TaskRecord;
     move-object/from16 v0, v18
 

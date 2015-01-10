@@ -15,6 +15,14 @@
 
 
 # virtual methods
+.method public abstract areNotificationsEnabled(Ljava/lang/String;I)Z
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+.end method
+
 .method public abstract ZTEAreNotificationsEnabledForPackage(Ljava/lang/String;)Z
     .annotation system Ldalvik/annotation/Throws;
         value = {

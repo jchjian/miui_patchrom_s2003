@@ -642,35 +642,41 @@
 .end method
 
 .method public onCreate()V
-    .locals 2
+    .locals 3
 
     .prologue
     .line 99
-    const/4 v0, 0x0
-
-    .line 101
-    .local v0, context:Landroid/content/Context;
     :try_start_0
-    invoke-virtual {p0}, Landroid/app/Application;->getApplicationContext()Landroid/content/Context;
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
-
-    move-result-object v0
-
-    .line 105
-    :goto_0
-    invoke-virtual {p0}, Landroid/app/Application;->getPackageName()Ljava/lang/String;
+    invoke-virtual {p0}, Landroid/app/Application;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
 
-    invoke-static {v0, v1}, Landroid/graphics/Typeface;->SetAppTypeFace(Landroid/content/Context;Ljava/lang/String;)V
+    check-cast v1, Landroid/content/res/MiuiResources;
+
+    .line 101
+    invoke-static {}, Landroid/app/ActivityManagerNative;->getDefault()Landroid/app/IActivityManager;
+
+    move-result-object v2
+
+    .line 105
+    invoke-interface {v2}, Landroid/app/IActivityManager;->getConfiguration()Landroid/content/res/Configuration;
+
+    move-result-object v2
+
+    invoke-virtual {v1, v2}, Landroid/content/res/MiuiResources;->initMiuiFontScale(Landroid/content/res/Configuration;)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
     .line 107
+    :goto_0
     return-void
 
     .line 102
     :catch_0
-    move-exception v1
+    move-exception v0
+
+    .local v0, e:Ljava/lang/Exception;
+    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_0
 .end method
