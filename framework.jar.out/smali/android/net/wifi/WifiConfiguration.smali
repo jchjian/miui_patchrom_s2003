@@ -111,7 +111,7 @@
 
 .field public status:I
 
-.field public wapiAsCert:Ljava/lang/String;
+.field public wapiASCert:Ljava/lang/String;
 
 .field public wapiCertIndex:I
 
@@ -268,7 +268,7 @@
 
     .line 391
     :cond_0
-    iput-object v2, p0, Landroid/net/wifi/WifiConfiguration;->wapiAsCert:Ljava/lang/String;
+    iput-object v2, p0, Landroid/net/wifi/WifiConfiguration;->wapiASCert:Ljava/lang/String;
 
     .line 392
     iput-object v2, p0, Landroid/net/wifi/WifiConfiguration;->wapiUserCert:Ljava/lang/String;
