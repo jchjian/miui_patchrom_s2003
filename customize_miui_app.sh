@@ -44,6 +44,14 @@ if [ $1 = "Phone" ];then
         echo ">>> in custom_app for Phone.apk to adjust the interface "registerForNetworkLocked" with "registerForPersoLocked""
         find out/Phone -name "*.smali" | xargs sed -i 's#registerForNetworkLocked#registerForPersoLocked#g'
 
+        echo ">>> delete preferred_network_mode_title"
+        sed -i '/preferred_network_mode_title/d' out/Phone/res/xml/network_setting_miui.xml
+
+        echo ">>> use 4g network type"
+        sed -i '/IS_MIFOUR_LTE:Z/{n;n;s/if-eqz/\#if-eqz/g}' out/Phone/smali/com/android/phone/MiuiPreferredNetworkTypeListPreference.smali
+        sed -i '/IS_MIFOUR_LTE:Z/{n;n;s/if-eqz/\#if-eqz/g}' out/Phone/smali/com/android/phone/MiuiTelephonyCapabilities.smali
+        sed -i '/IS_MIFOUR_LTE:Z/{n;n;s/if-eqz/\#if-eqz/g}' out/Phone/smali/com/android/phone/MiuiPhoneGlobals.smali
+
 fi
 
 if [ $1 = "MiuiSystemUI" ];then
