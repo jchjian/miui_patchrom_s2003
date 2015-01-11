@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="enable_magnifier_when_input">true</bool>
+    <integer name="config_show_rounded_corners_default">0</integer>
+    <bool name="config_enableUsbModeSelection">false</bool>
+</resources>
