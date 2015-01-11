@@ -13,7 +13,7 @@ local-modified-apps :=
 
 local-modified-priv-apps :=
 
-local-modified-jars := 
+local-modified-jars := services-ext
 
 # All apps need to be removed from original ZIP file
 local-remove-apps := 
