@@ -1086,7 +1086,7 @@
 
     move/from16 v0, v26
 
-    if-eq v0, v4, :cond_18
+    if-eq v0, v4, :cond_7
 
     .line 997
     packed-switch v26, :pswitch_data_0
@@ -1107,45 +1107,10 @@
     invoke-virtual {v7, v4, v5}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
     .line 1014
-    .end local v11           #degree:I
-    :cond_18
-    const-wide/16 v17, 0x0
-
-    .line 1015
-    .local v17, groupId:J
-    const-string v4, "GroupID"
-
-    invoke-virtual {v13, v4}, Landroid/media/ExifInterface;->getAttribute(Ljava/lang/String;)Ljava/lang/String;
-
-    move-result-object v19
-
-    .line 1016
-    .local v19, groupIdStr:Ljava/lang/String;
-    if-eqz v19, :cond_1a
-
-    .line 1018
-    :try_start_1
-    invoke-static/range {v19 .. v19}, Ljava/lang/Long;->parseLong(Ljava/lang/String;)J
-    :try_end_1
-    .catch Ljava/lang/NumberFormatException; {:try_start_1 .. :try_end_1} :catch_0
-
-    move-result-wide v17
-
-    .line 1025
-    :goto_a
-    const-string v4, "group_id"
-
-    invoke-static/range {v17 .. v18}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object v5
-
-    invoke-virtual {v7, v4, v5}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
-
     goto/16 :goto_1
 
     .line 986
-    .end local v17           #groupId:J
-    .end local v19           #groupIdStr:Ljava/lang/String;
+    .end local v11           #degree:I
     .end local v26           #orientation:I
     :cond_19
     invoke-virtual {v13}, Landroid/media/ExifInterface;->getDateTime()J
@@ -1219,78 +1184,7 @@
 
     .line 1019
     .end local v11           #degree:I
-    .restart local v17       #groupId:J
-    .restart local v19       #groupIdStr:Ljava/lang/String;
-    :catch_0
-    move-exception v12
-
-    .line 1020
-    .local v12, e:Ljava/lang/NumberFormatException;
-    const-string v4, "MediaScanner"
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v8, "endFile: "
-
-    invoke-virtual {v5, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    move-object/from16 v0, v19
-
-    invoke-virtual {v5, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    const-string v8, " cannot be converted to long."
-
-    invoke-virtual {v5, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    goto :goto_a
-
-    .line 1023
-    .end local v12           #e:Ljava/lang/NumberFormatException;
-    :cond_1a
-    const-string v4, "MediaScanner"
-
-    new-instance v5, Ljava/lang/StringBuilder;
-
-    invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v8, "endFile groupIdStr: "
-
-    invoke-virtual {v5, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    move-object/from16 v0, v19
-
-    invoke-virtual {v5, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v5
-
-    invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    goto :goto_a
-
-    .line 1035
     .end local v13           #exif:Landroid/media/ExifInterface;
-    .end local v17           #groupId:J
-    .end local v19           #groupIdStr:Ljava/lang/String;
     .end local v23           #latlng:[F
     .end local v26           #orientation:I
     .end local v31           #time:J
@@ -4785,3 +4679,4 @@
 
     goto :goto_0
 .end method
+
