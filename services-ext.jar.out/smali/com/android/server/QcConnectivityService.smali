@@ -651,6 +651,10 @@
 
     iput-object v2, v0, Lcom/android/server/QcConnectivityService;->mUserIntentReceiver:Landroid/content/BroadcastReceiver;
 
+    move-object/from16 v0, p1
+
+    invoke-static {v0}, Lcom/miui/server/FirewallService;->setupService(Landroid/content/Context;)V
+
     .line 505
     const-string v2, "QcConnectivityService starting up"
 
