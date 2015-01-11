@@ -135,7 +135,7 @@
 .end method
 
 .method public static isEmailAddress(Ljava/lang/String;)Z
-    .locals 4
+    .locals 3
     .parameter "address"
 
     .prologue
@@ -144,20 +144,9 @@
 
     move-result v2
 
-    if-nez v2, :cond_0
-
-    const/16 v2, 0x40
-
-    invoke-static {p0, v2}, Landroid/text/TextUtils;->indexOf(Ljava/lang/CharSequence;C)I
-
-    move-result v2
-
-    const/4 v3, -0x1
-
-    if-ne v2, v3, :cond_1
+    if-eqz v2, :cond_0
 
     .line 1881
-    :cond_0
     const/4 v2, 0x0
 
     .line 1886
@@ -165,7 +154,7 @@
     return v2
 
     .line 1884
-    :cond_1
+    :cond_0
     invoke-static {p0}, Landroid/provider/Telephony$Mms;->extractAddrSpec(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v1
@@ -284,3 +273,4 @@
 
     goto :goto_0
 .end method
+

@@ -63,66 +63,33 @@
 .end method
 
 .method public static getMessagesFromIntent(Landroid/content/Intent;)[Landroid/telephony/SmsMessage;
-    .locals 10
+    .locals 7
     .parameter "intent"
 
     .prologue
     .line 1038
-    const-string v7, "pdus"
+    const-string v6, "pdus"
 
-    invoke-virtual {p0, v7}, Landroid/content/Intent;->getSerializableExtra(Ljava/lang/String;)Ljava/io/Serializable;
+    invoke-virtual {p0, v6}, Landroid/content/Intent;->getSerializableExtra(Ljava/lang/String;)Ljava/io/Serializable;
 
-    move-result-object v7
+    move-result-object v6
 
-    check-cast v7, [Ljava/lang/Object;
+    check-cast v6, [Ljava/lang/Object;
 
-    move-object v2, v7
+    move-object v2, v6
 
     check-cast v2, [Ljava/lang/Object;
 
     .line 1039
     .local v2, messages:[Ljava/lang/Object;
-    const-string v7, "format"
+    const-string v6, "format"
 
-    invoke-virtual {p0, v7}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {p0, v6}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
 
     move-result-object v0
 
     .line 1040
     .local v0, format:Ljava/lang/String;
-    const-string v7, "subscription"
-
-    const/4 v8, 0x0
-
-    invoke-virtual {p0, v7, v8}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
-
-    move-result v6
-
-    .line 1042
-    .local v6, subId:I
-    const-string v7, "Telephony"
-
-    new-instance v8, Ljava/lang/StringBuilder;
-
-    invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v9, " getMessagesFromIntent sub_id : "
-
-    invoke-virtual {v8, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    invoke-virtual {v8, v6}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
-
-    move-result-object v8
-
-    invoke-virtual {v8}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v8
-
-    invoke-static {v7, v8}, Landroid/telephony/Rlog;->v(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 1044
     array-length v5, v2
 
     .line 1045
@@ -138,11 +105,11 @@
     if-ge v1, v5, :cond_0
 
     .line 1048
-    aget-object v7, v2, v1
+    aget-object v6, v2, v1
 
-    check-cast v7, [B
+    check-cast v6, [B
 
-    move-object v4, v7
+    move-object v4, v6
 
     check-cast v4, [B
 
@@ -150,14 +117,9 @@
     .local v4, pdu:[B
     invoke-static {v4, v0}, Landroid/telephony/SmsMessage;->createFromPdu([BLjava/lang/String;)Landroid/telephony/SmsMessage;
 
-    move-result-object v7
+    move-result-object v6
 
-    aput-object v7, v3, v1
-
-    .line 1050
-    aget-object v7, v3, v1
-
-    invoke-virtual {v7, v6}, Landroid/telephony/SmsMessage;->setSubId(I)V
+    aput-object v6, v3, v1
 
     .line 1047
     add-int/lit8 v1, v1, 0x1
@@ -169,3 +131,4 @@
     :cond_0
     return-object v3
 .end method
+

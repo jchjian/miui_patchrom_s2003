@@ -54,8 +54,6 @@
 
 .field public static final PORT:Ljava/lang/String; = "port"
 
-.field public static final PREFERRED:Ljava/lang/String; = "preferred"
-
 .field public static final PROTOCOL:Ljava/lang/String; = "protocol"
 
 .field public static final PROXY:Ljava/lang/String; = "proxy"

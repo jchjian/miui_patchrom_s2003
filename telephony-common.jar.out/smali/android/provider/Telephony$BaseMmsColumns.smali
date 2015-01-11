@@ -273,8 +273,6 @@
 
 .field public static final SUBJECT_CHARSET:Ljava/lang/String; = "sub_cs"
 
-.field public static final SUB_ID:Ljava/lang/String; = "sub_id"
-
 .field public static final TEXT_ONLY:Ljava/lang/String; = "text_only"
 
 .field public static final THREAD_ID:Ljava/lang/String; = "thread_id"
@@ -285,3 +283,4 @@
 .end field
 
 .field public static final TRANSACTION_ID:Ljava/lang/String; = "tr_id"
+

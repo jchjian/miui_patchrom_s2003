@@ -67,8 +67,6 @@
 
 .field public static final SUBJECT:Ljava/lang/String; = "subject"
 
-.field public static final SUB_ID:Ljava/lang/String; = "sub_id"
-
 .field public static final THREAD_ID:Ljava/lang/String; = "thread_id"
 
 .field public static final TYPE:Ljava/lang/String; = "type"
