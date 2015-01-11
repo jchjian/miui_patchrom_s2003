@@ -901,9 +901,7 @@
     </style>
     <style name="TextAppearance.StatusBar.EventContent.Title" parent="@style/TextAppearance.StatusBar.EventContent">
         <item name="textSize">@dimen/notification_title_text_size</item>
-        <item name="textStyle">bold</item>
         <item name="textColor">#ffffffff</item>
-        <item name="fontFamily">sans-serif-light</item>
     </style>
     <style name="Theme.WithActionBar" parent="@style/Theme">
         <item name="windowActionBar">true</item>
@@ -2920,7 +2918,7 @@
         <item name="textColor">@color/primary_text_light</item>
     </style>
     <style name="TextAppearance.Toast" parent="@style/TextAppearance">
-        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="textSize">14.0sp</item>
     </style>
     <style name="Widget.ActivityChooserView" parent="@style/Widget">
         <item name="gravity">center</item>
