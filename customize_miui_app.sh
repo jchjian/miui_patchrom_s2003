@@ -78,5 +78,7 @@ if [ $1 = "Settings" ];then
         sed -i 's/111004a/111004b/g' out/Settings/smali/com/android/settings/DreamBackend.smali
         sed -i 's/111004d/111004e/g' out/Settings/smali/com/android/settings/WirelessSettings.smali
 
+        $XMLMERGYTOOL $1/res/values $2/res/values
+
 fi
 
