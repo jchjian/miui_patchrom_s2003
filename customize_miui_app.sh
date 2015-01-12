@@ -60,3 +60,23 @@ if [ $1 = "MiuiSystemUI" ];then
 
 fi
 
+if [ $1 = "Settings" ];then
+        echo ">>> fix id error "
+        find out/Settings -name "*.smali" | xargs sed -i 's#1040405#104040b#g'
+        find out/Settings -name "*.smali" | xargs sed -i 's#108039c#1080398#g'
+        find out/Settings -name "*.smali" | xargs sed -i 's#10900a1#10900a0#g'
+        find out/Settings -name "*.smali" | xargs sed -i 's#1080394#1080390#g'
+        find out/Settings -name "*.smali" | xargs sed -i 's#1080395#1080391#g'
+        sed -i 's/10202ce/10202c5/g' out/Settings/smali/com/android/settings/inputmethod/KeyboardLayoutDialogFragment\$KeyboardLayoutAdapter.smali
+        sed -i 's/1040545/104054c/g' out/Settings/smali/com/android/settings/wfd/WifiDisplaySettings\$UnpairedWifiDisplayPreference.smali
+        sed -i 's/10400c9/10400cc/g' out/Settings/smali/com/android/settings/BugreportPreference.smali
+        sed -i 's/109009e/109009d/g' out/Settings/smali/com/android/settings/vpn2/VpnSettings\$LockdownConfigFragment\$TitleAdapter.smali
+        sed -i 's/1110039/111003a/g' out/Settings/smali/com/android/settings/bluetooth/BluetoothSettings.smali
+        sed -i 's/1110057/111005a/g' out/Settings/smali/com/android/settings/SoundSettings.smali
+        sed -i 's/111004c/111004d/g' out/Settings/smali/com/android/settings/DreamBackend.smali
+        sed -i 's/111004b/111004c/g' out/Settings/smali/com/android/settings/DreamBackend.smali
+        sed -i 's/111004a/111004b/g' out/Settings/smali/com/android/settings/DreamBackend.smali
+        sed -i 's/111004d/111004e/g' out/Settings/smali/com/android/settings/WirelessSettings.smali
+
+fi
+
