@@ -23,7 +23,7 @@ local-miui-removed-apps := O2O MediaProvider
 
 local-miui-removed-priv-apps := O2O MediaProvider
 
-local-miui-modified-apps := Phone MiuiSystemUI Settings
+local-miui-modified-apps := Phone MiuiSystemUI Settings MiuiGallery
 
 # Config density for co-developers to use the aaps with HDPI or XHDPI resource,
 # Default configrations are HDPI for ics branch and XHDPI for jellybean branch

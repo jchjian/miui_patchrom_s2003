@@ -87,3 +87,8 @@ if [ $1 = "Settings" ];then
         applyPatch "other/Settings"
 fi
 
+if [ $1 = "MiuiGallery" ];then
+        applyPatch "other/MiuiGallery"
+fi
+
+

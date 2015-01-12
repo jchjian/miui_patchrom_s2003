@@ -1,0 +1,23 @@
+From 1b2104993f5cb357d7050d0a24ea2b617a8d85f2 Mon Sep 17 00:00:00 2001
+From: jchjian <671346@qq.com>
+Date: Thu, 25 Dec 2014 18:41:08 +0800
+Subject: [PATCH 1/1] fix can't show pictures in MiuiGallery
+
+---
+ .../smali/com/miui/gallery/util/deviceprovider/PhoneUtilsProvider.smali | 2 ++
+ 1 files changed, 2 insertions(+)
+
+--- a/MiuiGallery/smali/com/miui/gallery/util/deviceprovider/PhoneUtilsProvider.smali
++++ b/MiuiGallery/smali/com/miui/gallery/util/deviceprovider/PhoneUtilsProvider.smali
+@@ -609,6 +609,8 @@
+     .prologue
+     sget-boolean v0, Lmiui/os/Build;->IS_HONGMI:Z
+ 
++    const/4 v0, 0x1
++
+     return v0
+ .end method
+ 
+-- 
+1.9.1
+
