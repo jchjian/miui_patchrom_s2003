@@ -58,6 +58,9 @@ if [ $1 = "MiuiSystemUI" ];then
         echo ">>> in custom_app for MiuiSystemUI.apk to adjust the field IccCardConstants$State;->NETWORK_LOCKED with IccCardConstants$State;->PERSO_LOCKED"
         find out/MiuiSystemUI -name "*.smali" | xargs sed -i 's#IccCardConstants$State;->NETWORK_LOCKED#IccCardConstants$State;->PERSO_LOCKED#g'
 
+        applyPatch "other/MiuiSystemUI"
+        cp -rf overlay/MiuiSystemUI/smali/* out/MiuiSystemUI/smali
+
 fi
 
 if [ $1 = "Settings" ];then

@@ -1,0 +1,25 @@
+From e4d8be2724268e4e777137d4bf445d35ab3718e2 Mon Sep 17 00:00:00 2001
+From: jchjian <671346@qq.com>
+Date: Wed, 7 Jan 2015 01:30:40 +0800
+Subject: [PATCH 1/1] add action to create screenshot directory before take screenshot
+
+---
+ .../smali/com/android/systemui/screenshot/TakeScreenshotService.smali | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+--- a/MiuiSystemUI/smali/com/android/systemui/screenshot/TakeScreenshotService.smali
++++ b/MiuiSystemUI/smali/com/android/systemui/screenshot/TakeScreenshotService.smali
+@@ -24,6 +24,10 @@
+ 
+     iput-object v0, p0, Lcom/android/systemui/screenshot/TakeScreenshotService;->mHandler:Landroid/os/Handler;
+ 
++    const-string v0, "mkdir -p /sdcard/DCIM/Screenshots"
++
++    invoke-static {v0}, Lcom/android/systemui/RootCmd;->RunRootCmd(Ljava/lang/String;)I
++
+     return-void
+ .end method
+ 
+-- 
+1.9.1
+
