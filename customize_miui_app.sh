@@ -91,4 +91,7 @@ if [ $1 = "MiuiGallery" ];then
         applyPatch "other/MiuiGallery"
 fi
 
+if [ $1 = "Music" ];then
+        applyPatch "other/Music"
+fi
 

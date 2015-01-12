@@ -1,0 +1,23 @@
+From 0e2f81f7565309619a915cc99b1fc5a0537f2d33 Mon Sep 17 00:00:00 2001
+From: jchjian <671346@qq.com>
+Date: Fri, 19 Dec 2014 18:12:02 +0800
+Subject: [PATCH 1/1] open priority_storage setting
+
+---
+ Music/smali/com/miui/player/util/Utils.smali | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- a/Music/smali/com/miui/player/util/Utils.smali
++++ b/Music/smali/com/miui/player/util/Utils.smali
+@@ -387,7 +387,7 @@
+     .locals 2
+ 
+     .prologue
+-    const/4 v0, 0x0
++    const/4 v0, 0x1
+ 
+     sget-boolean v1, Lmiui/os/Build;->IS_HONGMI_TWO:Z
+ 
+-- 
+1.9.1
+
