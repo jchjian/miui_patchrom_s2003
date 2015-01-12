@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public type="string" name="crt_screen_title" id="0x7f080e5a" />
+    <public type="string" name="crt_screen_summary" id="0x7f080e5b" />
+</resources>

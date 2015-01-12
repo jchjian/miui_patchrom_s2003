@@ -1,0 +1,154 @@
+From 5b0810d7ba43bf932283dcfcbd6fa82d098b67ce Mon Sep 17 00:00:00 2001
+From: jchjian <671346@qq.com>
+Date: Fri, 12 Dec 2014 17:18:36 +0800
+Subject: [PATCH 1/1] add option of CRT screen animation style into settings
+
+---
+ Settings/res/xml/display_settings.xml              |  3 +-
+ .../com/android/settings/DisplaySettings.smali     | 80 +++++++++++++++++++++-
+ 2 files changed, 81 insertions(+), 2 deletions(-)
+
+--- a/Settings/res/xml/display_settings.xml
++++ b/Settings/res/xml/display_settings.xml
+@@ -14,6 +14,7 @@
+     <CheckBoxPreference android:persistent="false" android:title="@string/touch_sensitive_title" android:key="touch_sensitive" android:summary="@string/touch_sensitive_summary" />
+     <CheckBoxPreference android:persistent="false" android:title="@string/screen_on_proximity_sensor_title" android:key="screen_on_proximity_sensor" android:summary="@string/screen_on_proximity_sensor_summary" />
+     <PreferenceCategory android:title="@string/system" />
++    <CheckBoxPreference android:persistent="false" android:title="@string/crt_screen_title" android:key="screen_animation_style" android:summary="@string/crt_screen_summary" />
+     <PreferenceScreen android:title="@string/wallpaper_settings_title" android:key="wallpaper">
+         <intent android:targetPackage="com.android.thememanager" android:targetClass="com.android.thememanager.activity.WallpaperSettings" />
+     </PreferenceScreen>
+@@ -31,4 +32,4 @@
+     <ListPreference android:persistent="false" android:entries="@array/screen_timeout_entries" android:title="@string/screen_timeout" android:key="screen_timeout" android:summary="@string/screen_timeout_summary" android:entryValues="@array/screen_timeout_values" />
+     <CheckBoxPreference android:persistent="false" android:title="@string/notification_pulse_title" android:key="notification_pulse" />
+     <PreferenceScreen android:title="@string/screensaver_settings_title" android:key="screensaver" android:fragment="com.android.settings.DreamSettings" />
+-</PreferenceScreen>
+\ No newline at end of file
++</PreferenceScreen>
+--- a/Settings/smali/com/android/settings/DisplaySettings.smali
++++ b/Settings/smali/com/android/settings/DisplaySettings.smali
+@@ -8,6 +8,8 @@
+ 
+ 
+ # instance fields
++.field private mScreenAnimationStyle:Landroid/preference/CheckBoxPreference;
++
+ .field private mAccelerometer:Landroid/preference/CheckBoxPreference;
+ 
+ .field private final mCurConfig:Landroid/content/res/Configuration;
+@@ -517,6 +519,21 @@
+ 
+     invoke-virtual {p0, v5}, Lcom/android/settings/DisplaySettings;->addPreferencesFromResource(I)V
+ 
++    const-string v5, "screen_animation_style"
++
++    invoke-virtual {p0, v5}, Lcom/android/settings/DisplaySettings;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
++
++    move-result-object v5
++
++    check-cast v5, Landroid/preference/CheckBoxPreference;
++
++    iput-object v5, p0, Lcom/android/settings/DisplaySettings;->mScreenAnimationStyle:Landroid/preference/CheckBoxPreference;
++
++    iget-object v5, p0, Lcom/android/settings/DisplaySettings;->mScreenAnimationStyle:Landroid/preference/CheckBoxPreference;
++
++    if-nez v5, :cond_miui_00
++
++    :goto_miui_00
+     const-string v5, "accelerometer"
+ 
+     invoke-virtual {p0, v5}, Lcom/android/settings/DisplaySettings;->findPreference(Ljava/lang/CharSequence;)Landroid/preference/Preference;
+@@ -692,6 +709,33 @@
+     :cond_4
+     return-void
+ 
++    :cond_miui_00
++    iget-object v8, p0, Lcom/android/settings/DisplaySettings;->mScreenAnimationStyle:Landroid/preference/CheckBoxPreference;
++
++    const-string v5, "screen_animation_style"
++
++    invoke-static {v2, v5}, Landroid/provider/Settings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v4
++
++    if-nez v4, :cond_miui_01
++
++    invoke-static {v2, v5, v6}, Landroid/provider/Settings$System;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
++
++    :cond_miui_01
++    invoke-static {v2, v5}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;)I
++
++    move-result v5
++
++    if-eq v5, v6, :cond_miui_02
++
++    move v5, v6
++
++    :goto_miui_01
++    invoke-virtual {v8, v5}, Landroid/preference/CheckBoxPreference;->setChecked(Z)V
++
++    goto :goto_miui_00
++
+     :cond_5
+     :try_start_0
+     iget-object v8, p0, Lcom/android/settings/DisplaySettings;->mNotificationPulse:Landroid/preference/CheckBoxPreference;
+@@ -734,6 +778,11 @@
+     move v5, v7
+ 
+     goto :goto_1
++
++    :cond_miui_02
++    move v5, v7
++
++    goto :goto_miui_01
+ .end method
+ 
+ .method public onCreateDialog(I)Landroid/app/Dialog;
+@@ -942,7 +991,7 @@
+     :cond_2
+     iget-object v3, p0, Lcom/android/settings/DisplaySettings;->mNotificationPulse:Landroid/preference/CheckBoxPreference;
+ 
+-    if-ne p2, v3, :cond_0
++    if-ne p2, v3, :cond_miui_00
+ 
+     iget-object v3, p0, Lcom/android/settings/DisplaySettings;->mNotificationPulse:Landroid/preference/CheckBoxPreference;
+ 
+@@ -968,6 +1017,35 @@
+     move v1, v2
+ 
+     goto :goto_2
++
++    :cond_miui_00
++    iget-object v3, p0, Lcom/android/settings/DisplaySettings;->mScreenAnimationStyle:Landroid/preference/CheckBoxPreference;
++
++    if-ne p2, v3, :cond_0
++
++    iget-object v3, p0, Lcom/android/settings/DisplaySettings;->mScreenAnimationStyle:Landroid/preference/CheckBoxPreference;
++
++    invoke-virtual {v3}, Landroid/preference/CheckBoxPreference;->isChecked()Z
++
++    move-result v0
++
++    if-nez v0, :cond_miui_01
++
++    :goto_miui_00
++    invoke-virtual {p0}, Lcom/android/settings/DisplaySettings;->getContentResolver()Landroid/content/ContentResolver;
++
++    move-result-object v3
++
++    const-string v4, "screen_animation_style"
++
++    invoke-static {v3, v4, v1}, Landroid/provider/Settings$System;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
++
++    goto :goto_1
++
++    :cond_miui_01
++    move v1, v2
++
++    goto :goto_miui_00
+ .end method
+ 
+ .method public onResume()V
+-- 
+1.9.1
+

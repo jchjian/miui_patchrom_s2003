@@ -79,6 +79,8 @@ if [ $1 = "Settings" ];then
         sed -i 's/111004d/111004e/g' out/Settings/smali/com/android/settings/WirelessSettings.smali
 
         $XMLMERGYTOOL $1/res/values $2/res/values
-
+        $XMLMERGYTOOL $1/res/values-zh-rCN $2/res/values-zh-rCN
+        $XMLMERGYTOOL $1/res/values-zh-rTW $2/res/values-zh-rTW
+        applyPatch "other/Settings"
 fi
 

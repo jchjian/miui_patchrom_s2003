@@ -105,6 +105,8 @@
 
 .field private final mCleanListener:Ljava/lang/Runnable;
 
+.field private final mContext:Landroid/content/Context;
+
 .field private mDarkeningLuxThreshold:F
 
 .field private mDebounceLuxDirection:I
@@ -372,6 +374,8 @@
     invoke-direct {v5, p0}, Lcom/android/server/power/DisplayPowerController$9;-><init>(Lcom/android/server/power/DisplayPowerController;)V
 
     iput-object v5, p0, Lcom/android/server/power/DisplayPowerController;->mTwilightListener:Lcom/android/server/TwilightService$TwilightListener;
+
+    iput-object p2, p0, Lcom/android/server/power/DisplayPowerController;->mContext:Landroid/content/Context;
 
     .line 372
     new-instance v5, Lcom/android/server/power/DisplayPowerController$DisplayControllerHandler;
@@ -2639,6 +2643,46 @@
     add-float/2addr v0, p0
 
     return v0
+.end method
+
+.method private mElectronBeamFadesConfig()Z
+    .locals 5
+
+    .prologue
+    const/4 v0, 0x1
+
+    const/4 v1, 0x0
+
+    iget-object v2, p0, Lcom/android/server/power/DisplayPowerController;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v2}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v2
+
+    const-string v3, "screen_animation_style"
+
+    invoke-static {v2, v3}, Landroid/provider/Settings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v4
+
+    if-nez v4, :cond_0
+
+    invoke-static {v2, v3, v0}, Landroid/provider/Settings$System;->putInt(Landroid/content/ContentResolver;Ljava/lang/String;I)Z
+
+    :cond_0
+    invoke-static {v2, v3, v1}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+
+    move-result v2
+
+    if-ne v2, v0, :cond_1
+
+    :goto_0
+    return v0
+
+    :cond_1
+    move v0, v1
+
+    goto :goto_0
 .end method
 
 .method private static normalizeAbsoluteBrightness(I)F
@@ -5240,7 +5284,9 @@
     :cond_23
     iget-object v6, p0, Lcom/android/server/power/DisplayPowerController;->mPowerState:Lcom/android/server/power/DisplayPowerState;
 
-    iget-boolean v8, p0, Lcom/android/server/power/DisplayPowerController;->mElectronBeamFadesConfig:Z
+    invoke-direct {p0}, Lcom/android/server/power/DisplayPowerController;->mElectronBeamFadesConfig()Z
+
+    move-result v8
 
     if-eqz v8, :cond_24
 
