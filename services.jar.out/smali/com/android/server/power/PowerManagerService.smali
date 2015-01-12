@@ -1227,6 +1227,27 @@
 
     .prologue
     .line 2049
+    const-string v0, "s2003_yegui"
+
+    const-string v1, "ro.product.mod_device"
+
+    invoke-static {v1}, Landroid/os/SystemProperties;->get(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_miui_00
+
+    const/16 v2, 0x1
+
+    const-string v3, "normal"
+
+    invoke-static {v2, v3}, Lcom/android/server/power/ShutdownThread;->rebootOrShutdown(ZLjava/lang/String;)V
+
+    :cond_miui_00
     const-string v1, "PowerManagerService"
 
     const-string v2, "Check if boot animation finished..."
