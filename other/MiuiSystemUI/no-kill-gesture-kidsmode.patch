@@ -1,0 +1,33 @@
+From b50c2b19e9342ce375d848e08c866d03ecd833c5 Mon Sep 17 00:00:00 2001
+From: jchjian <671346@qq.com>
+Date: Sun, 18 Jan 2015 19:29:29 +0800
+Subject: [PATCH 2/2] add ZTE gesture and kidsmode into no kill packages of RecentTasksManager
+
+---
+ .../android/systemui/taskmanager/RecentTasksManager.smali    | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+--- a/MiuiSystemUI/smali/com/android/systemui/taskmanager/RecentTasksManager.smali
++++ b/MiuiSystemUI/smali/com/android/systemui/taskmanager/RecentTasksManager.smali
+@@ -326,6 +326,18 @@
+     :cond_1
+     iget-object v4, p0, Lcom/android/systemui/taskmanager/RecentTasksManager;->mSomeDefaultNoKillPkgs:Ljava/util/List;
+ 
++    const-string v5, "com.zte.zgesture"
++
++    invoke-interface {v4, v5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++
++    iget-object v4, p0, Lcom/android/systemui/taskmanager/RecentTasksManager;->mSomeDefaultNoKillPkgs:Ljava/util/List;
++
++    const-string v5, "com.zte.android.kidsmode"
++
++    invoke-interface {v4, v5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++
++    iget-object v4, p0, Lcom/android/systemui/taskmanager/RecentTasksManager;->mSomeDefaultNoKillPkgs:Ljava/util/List;
++
+     const-string v5, "com.android.deskclock"
+ 
+     invoke-interface {v4, v5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+-- 
+1.9.1
+
