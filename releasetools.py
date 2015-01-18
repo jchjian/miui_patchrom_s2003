@@ -16,9 +16,18 @@ def WritePolicyConfig(info):
   except KeyError:
     print "warning: file_context missing from target;"
 
+def AddFileLinks(info):
+  edify = info.script
+  for i in xrange(len(edify.script)):
+    if "ui_print(" in edify.script[i] and "Creating" in edify.script[i]:
+      edify.script[i] = '''ui_print("Creating system links...");
+symlink("/data/misc/audio/wcd9320_anc.bin", "/system/etc/firmware/wcd9306/wcd9306_anc.bin");
+symlink("/data/misc/audio/mbhc.bin", "/system/etc/firmware/wcd9306/wcd9306_mbhc.bin");'''
+      return
 
 def FullOTA_InstallEnd(info):
     AddArgsForSetPermission(info)
+    AddFileLinks(info)
     WritePolicyConfig(info)
 
 
