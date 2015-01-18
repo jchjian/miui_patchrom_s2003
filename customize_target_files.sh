@@ -8,3 +8,7 @@ rm -rf out/target_files/SYSTEM/etc/custom_config
 
 echo ">>> use installd of vendor "
 cp -rf stockrom/system/bin/installd out/target_files/SYSTEM/bin
+
+echo ">>> remove some not need jar files of vendor "
+rm -rf out/target_files/SYSTEM/framework/com.zte.ZTESecurity.jar
+rm -rf out/target_files/SYSTEM/framework/IZTESecurity.jar
