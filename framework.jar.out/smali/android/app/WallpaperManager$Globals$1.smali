@@ -51,13 +51,6 @@
 
     .line 252
     :pswitch_0
-    const-string v0, "WallpaperManager:Globals"
-
-    const-string v1, "MSG_CLEAR_WALLPAPER"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 253
     monitor-enter p0
 
     .line 254
@@ -91,52 +84,10 @@
 
     throw v0
 
-    .line 260
-    :pswitch_1
-    const-string v0, "WallpaperManager:Globals"
-
-    const-string v1, "MSG_CLEAR_LOCKSCREEN"
-
-    invoke-static {v0, v1}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 261
-    monitor-enter p0
-
-    .line 262
-    :try_start_1
-    iget-object v0, p0, Landroid/app/WallpaperManager$Globals$1;->this$0:Landroid/app/WallpaperManager$Globals;
-
-    const/4 v1, 0x0
-
-    #setter for: Landroid/app/WallpaperManager$Globals;->mLockscreen:Landroid/graphics/Bitmap;
-    invoke-static {v0, v1}, Landroid/app/WallpaperManager$Globals;->access$202(Landroid/app/WallpaperManager$Globals;Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
-
-    .line 263
-    iget-object v0, p0, Landroid/app/WallpaperManager$Globals$1;->this$0:Landroid/app/WallpaperManager$Globals;
-
-    const/4 v1, 0x0
-
-    #setter for: Landroid/app/WallpaperManager$Globals;->mDefaultLockscreenWallpaper:Landroid/graphics/Bitmap;
-    invoke-static {v0, v1}, Landroid/app/WallpaperManager$Globals;->access$302(Landroid/app/WallpaperManager$Globals;Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
-
-    .line 264
-    monitor-exit p0
-
-    goto :goto_0
-
-    :catchall_1
-    move-exception v0
-
-    monitor-exit p0
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_1
-
-    throw v0
-
     .line 250
     :pswitch_data_0
     .packed-switch 0x1
         :pswitch_0
-        :pswitch_1
     .end packed-switch
 .end method
+
