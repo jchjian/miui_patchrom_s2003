@@ -45,6 +45,7 @@ private-phone-priv-apps := BackupRestoreConfirmation \
                                           ExternalStorageProvider \
                                           InputDevices \
                                           MediaProvider \
+                                          MusicFX \
                                           OneTimeInitializer\
                                           ProxyHandler \
                                           SharedStorageBackup \
