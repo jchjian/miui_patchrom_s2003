@@ -136,3 +136,4 @@ name="DsUI.apk" certificate="build/target/product/security/platform.x509.pem" pr
 name="Ds.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
 name="ApplicationsProvider.apk" certificate="PRESIGNED" private_key=""
 name="KidsMode.apk" certificate="build/target/product/security/platform.x509.pem" private_key="build/target/product/security/platform.pk8"
+name="StockSettings.apk" certificate="PRESIGNED" private_key=""
