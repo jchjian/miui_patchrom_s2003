@@ -2,4 +2,6 @@
 <resources>
     <bool name="has_led">true</bool>
     <bool name="has_volume_wake">true</bool>
+    <bool name="config_glove_mode">false</bool>
+    <bool name="config_kids_mode">true</bool>
 </resources>

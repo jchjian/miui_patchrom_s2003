@@ -1,0 +1,1 @@
+    <header android:icon="@drawable/ic_launcher_settings" android:id="@id/advanced_settings" android:title="@string/advanced_settings_title" android:fragment="com.android.settings.AdvancedSettings" />

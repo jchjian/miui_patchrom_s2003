@@ -84,6 +84,12 @@ if [ $1 = "Settings" ];then
         $XMLMERGYTOOL $1/res/values $2/res/values
         $XMLMERGYTOOL $1/res/values-zh-rCN $2/res/values-zh-rCN
         $XMLMERGYTOOL $1/res/values-zh-rTW $2/res/values-zh-rTW
+
+        echo ">>> The following command adds the advanced settings to the settings_headers.xml file "
+        sed -i '/QUIET_MODE/{N;/header/r other/Settings/add_advanced_settings.xml
+}' out/Settings/res/xml/settings_headers.xml
+        cp -rf overlay/Settings/* out/Settings
+
         applyPatch "other/Settings"
 fi
 

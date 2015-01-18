@@ -2,4 +2,25 @@
 <resources>
     <public type="string" name="crt_screen_title" id="0x7f080e5a" />
     <public type="string" name="crt_screen_summary" id="0x7f080e5b" />
+    <public type="bool" name="config_glove_mode" id="0x7f0c0027" />
+    <public type="bool" name="config_kids_mode" id="0x7f0c0028" />
+    <public type="id" name="advanced_settings" id="0x7f0903d9" />
+    <public type="xml" name="advanced_settings" id="0x7f060097" />
+    <public type="string" name="advanced_settings_title" id="0x7f080e5c" />
+    <public type="string" name="tab_operation_category_assistant" id="0x7f080e5d" />
+    <public type="string" name="gesture_title" id="0x7f080e5e" />
+    <public type="string" name="mi_pop_title" id="0x7f080e5f" />
+    <public type="string" name="glove_mode_title" id="0x7f080e60" />
+    <public type="string" name="kids_mode_title" id="0x7f080e61" />
+    <public type="string" name="voice_setting_title" id="0x7f080e62" />
+    <public type="string" name="tab_operation_category_power_onoff" id="0x7f080e63" />
+    <public type="string" name="quick_start" id="0x7f080e64" />
+    <public type="string" name="scheduled_powerOnOff_title" id="0x7f080e65" />
+    <public type="string" name="quick_start_summary" id="0x7f080e66" />
+    <public type="string" name="goggles_title" id="0x7f080e67" />
+    <public type="string" name="goggles_summary" id="0x7f080e68" />
+    <public type="string" name="other_options" id="0x7f080e69" />
+    <public type="string" name="pppoe_dial" id="0x7f080e6a" />
+    <public type="string" name="sound_advanced_settings" id="0x7f080e6b" />
+    <public type="string" name="sound_advanced_summary" id="0x7f080e6c" />
 </resources>

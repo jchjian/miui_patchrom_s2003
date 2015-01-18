@@ -2,4 +2,21 @@
 <resources>
     <string name="crt_screen_title">CRT鎖屏特效</string>
     <string name="crt_screen_summary">開啟後鎖屏時具有類似CRT顯示器關屏的效果</string>
+    <string name="advanced_settings_title">高級設置</string>
+    <string name="tab_operation_category_assistant">輔助</string>
+    <string name="gesture_title">手勢和動作</string>
+    <string name="mi_pop_title">屏幕助手</string>
+    <string name="glove_mode_title">手套模式</string>
+    <string name="kids_mode_title">兒童模式</string>
+    <string name="voice_setting_title">語音助手</string>
+    <string name="tab_operation_category_power_onoff">開關機</string>
+    <string name="quick_start">快速啟動</string>
+    <string name="scheduled_powerOnOff_title">定時開關機</string>
+    <string name="quick_start_summary">如果開啟此功能,開機時間將會大大縮短</string>
+    <string name="goggles_title">護目鏡</string>
+    <string name="goggles_summary">調整屏幕亮度，看小說必備神器</string>
+    <string name="other_options">其他選項</string>
+    <string name="pppoe_dial">撥號上網</string>
+    <string name="sound_advanced_settings">聲音高級設置</string>
+    <string name="sound_advanced_summary">杜比音效設置</string>
 </resources>

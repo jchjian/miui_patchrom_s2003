@@ -2,4 +2,21 @@
 <resources>
     <string name="crt_screen_title">CRT lock screen effect</string>
     <string name="crt_screen_summary">We can have the effect like CRT display screen off after opening it.</string>
+    <string name="advanced_settings_title">Advanced_settings</string>
+    <string name="tab_operation_category_assistant">ASSISTANT</string>
+    <string name="gesture_title">motion &amp; Gesture</string>
+    <string name="mi_pop_title">Mi-Pop</string>
+    <string name="glove_mode_title">Glove mode</string>
+    <string name="kids_mode_title">Kids mode</string>
+    <string name="voice_setting_title">Voice assistant</string>
+    <string name="tab_operation_category_power_onoff">POWER ON &amp; OFF</string>
+    <string name="quick_start">Quick start</string>
+    <string name="scheduled_powerOnOff_title">Scheduled power on/off</string>
+    <string name="quick_start_summary">If enabled,it will save your time when starting your phone</string>
+    <string name="goggles_title">Goggles</string>
+    <string name="goggles_summary">Adjust the brightness of the screen</string>
+    <string name="other_options">Other Options</string>
+    <string name="pppoe_dial">Dial-up Internet access</string>
+    <string name="sound_advanced_settings">Sound Advanced Settings</string>
+    <string name="sound_advanced_summary">Dolby sound settings</string>
 </resources>

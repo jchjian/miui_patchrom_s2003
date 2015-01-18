@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen android:title="@string/advanced_settings_title" android:key="advanced_settings"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    <PreferenceCategory android:title="@string/tab_operation_category_assistant" />
+    <PreferenceScreen android:title="@string/gesture_title" android:key="ztegesture_settings">
+        <intent android:targetPackage="com.zte.zgesture" android:action="com.zte.zgesture.MainSettingActivity" android:targetClass="com.zte.zgesture.MainSettingActivity" />
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/mi_pop_title" android:key="mi_pop">
+        <intent android:targetPackage="com.android.mipop" android:action="android.intent.action.MAIN" android:targetClass="com.android.mipop.MIPopActivity" />
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/glove_mode_title" android:key="glove_mode">
+        <intent android:targetPackage="com.android.settings" android:action="android.intent.action.MAIN" android:targetClass="com.android.settings.GloveHelper" />
+    </PreferenceScreen>
+    <Preference android:title="@string/kids_mode_title" android:key="kids_mode">
+        <intent android:targetPackage="com.zte.android.kidsmode" android:action="android.intent.action.MAIN" android:targetClass="com.zte.android.kidsmode.EnterActiviry" />
+    </Preference>
+    <PreferenceScreen android:title="@string/voice_setting_title" android:key="toggle_voicewakeup">
+        <intent android:targetPackage="com.android.settings" android:action="android.intent.action.MAIN" android:targetClass="com.android.settings.voice.VoiceSettings" />
+    </PreferenceScreen>
+    <PreferenceCategory android:title="@string/display_settings_title" />
+    <CheckBoxPreference android:persistent="false" android:title="@string/crt_screen_title" android:key="screen_animation_style" android:summary="@string/crt_screen_summary" />
+    <PreferenceScreen android:title="@string/goggles_title" android:summary="@string/goggles_summary">
+        <intent android:targetPackage="cn.mixiaoxiao.myappscreenmask" android:action="android.intent.action.MAIN" android:targetClass="cn.mixiaoxiao.myappscreenmask.MainActivity" />
+     </PreferenceScreen>
+    <PreferenceCategory android:title="@string/tab_operation_category_power_onoff" />
+    <CheckBoxPreference android:persistent="false" android:title="@string/quick_start" android:key="toggle_quickstart" android:summary="@string/quick_start_summary" />
+    <PreferenceScreen android:title="@string/scheduled_powerOnOff_title" android:key="scheduled_power_on_off_settings">
+        <intent android:targetPackage="com.android.stocksettings" android:action="android.intent.action.MAIN" android:targetClass="com.android.stocksettings.powercontrol.ScheduledPowerOnOffActivity" />
+    </PreferenceScreen>
+    <PreferenceCategory android:title="@string/other_options" />
+    <PreferenceScreen android:title="@string/storage_settings" android:key="storage_settings">
+        <intent android:targetPackage="com.android.stocksettings" android:action="android.intent.action.MAIN" android:targetClass="com.android.stocksettings.Settings$StorageSettingsActivity" />
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/storage_title_usb" android:key="storage_usb">
+        <intent android:targetPackage="com.android.stocksettings" android:action="android.intent.action.MAIN" android:targetClass="com.android.stocksettings.connectpc.ConnectPCType" />
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/sound_advanced_settings" android:summary="@string/sound_advanced_summary">
+        <intent android:targetPackage="com.android.stocksettings" android:action="android.intent.action.MAIN" android:targetClass="com.android.stocksettings.SoundSettings" />
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/pppoe_dial" android:key="pppoe_mode">
+        <intent android:targetPackage="com.android.stocksettings" android:action="android.intent.action.MAIN" android:targetClass="com.android.stocksettings.pppoe.PppoeSettings" />
+    </PreferenceScreen>
+    <PreferenceScreen android:title="@string/wifi_show_advanced" android:key="dispaly_mode">
+        <intent android:targetPackage="com.android.stocksettings" android:action="android.intent.action.MAIN" android:targetClass="com.android.stocksettings.ScreenEffectSettings" />
+    </PreferenceScreen>
+</PreferenceScreen>
