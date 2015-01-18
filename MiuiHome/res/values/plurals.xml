@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="uninstall_result_failed">
+        <item quantity="other">"Can't uninstall %1$s and %2$d other apps"</item>
+        <item quantity="one">"Can't uninstall %s"</item>
+        <item quantity="two">"Can't uninstall %s and 1 other app"</item>
+    </plurals>
+</resources>

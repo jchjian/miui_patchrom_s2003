@@ -95,3 +95,6 @@ if [ $1 = "Music" ];then
         applyPatch "other/Music"
 fi
 
+if [ $1 = "MiuiHome" ];then
+        $XMLMERGYTOOL $1/res/values $2/res/values
+fi
