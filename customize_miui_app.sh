@@ -90,7 +90,6 @@ if [ $1 = "Settings" ];then
 }' out/Settings/res/xml/settings_headers.xml
         cp -rf overlay/Settings/* out/Settings
 
-        applyPatch "other/Settings"
 fi
 
 if [ $1 = "MiuiGallery" ];then

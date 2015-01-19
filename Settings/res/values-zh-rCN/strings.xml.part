@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="applications_sort_type_title">排序方式</string>
     <string name="crt_screen_title">CRT锁屏特效</string>
     <string name="crt_screen_summary">开启后锁屏时具有类似CRT显示器关屏的效果</string>
     <string name="advanced_settings_title">高级设置</string>
