@@ -75,6 +75,7 @@ then
           echo "rm file: $file"
           rm -rf "$file"
       done
+      applyPatch "other/framework2"
 
 fi
 
