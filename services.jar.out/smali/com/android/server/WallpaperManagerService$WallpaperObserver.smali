@@ -15,12 +15,6 @@
 
 
 # instance fields
-.field final mLockscreenWallpaperFile:Ljava/io/File;
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->NEW_FIELD:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
-.end field
-
 .field final mWallpaper:Lcom/android/server/WallpaperManagerService$WallpaperData;
 
 .field final mWallpaperDir:Ljava/io/File;
@@ -35,9 +29,6 @@
     .locals 3
     .parameter
     .parameter "wallpaper"
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->CHANGE_CODE:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
 
     .prologue
     .line 148
@@ -84,32 +75,18 @@
     iput-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaperFile:Ljava/io/File;
 
     .line 156
-    new-instance v0, Ljava/io/File;
-
-    iget-object v1, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaperDir:Ljava/io/File;
-
-    const-string v2, "lockscreen"
-
-    invoke-direct {v0, v1, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
-
-    iput-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mLockscreenWallpaperFile:Ljava/io/File;
-
-    .line 158
     return-void
 .end method
 
 
 # virtual methods
 .method public onEvent(ILjava/lang/String;)V
-    .locals 12
+    .locals 11
     .parameter "event"
     .parameter "path"
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->CHANGE_CODE:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
 
     .prologue
-    const/16 v11, 0x8
+    const/16 v2, 0x8
 
     .line 163
     if-nez p2, :cond_0
@@ -158,41 +135,6 @@
 
     .line 175
     .local v7, changedFile:Ljava/io/File;
-    const-string v0, "WallpaperService"
-
-    new-instance v1, Ljava/lang/StringBuilder;
-
-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
-
-    const-string v2, "onEvent mWallpaperDir="
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    iget-object v2, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaperDir:Ljava/io/File;
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    const-string v2, ", path="
-
-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
-
-    move-result-object v1
-
-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-
-    move-result-object v1
-
-    invoke-static {v0, v1}, Landroid/util/Slog;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 177
     iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaperFile:Ljava/io/File;
 
     invoke-virtual {v0, v7}, Ljava/io/File;->equals(Ljava/lang/Object;)Z
@@ -216,7 +158,7 @@
 
     if-eqz v0, :cond_1
 
-    if-ne p1, v11, :cond_1
+    if-ne p1, v2, :cond_1
 
     iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaper:Lcom/android/server/WallpaperManagerService$WallpaperData;
 
@@ -226,7 +168,7 @@
 
     .line 181
     :cond_1
-    if-ne p1, v11, :cond_2
+    if-ne p1, v2, :cond_2
 
     .line 182
     iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaper:Lcom/android/server/WallpaperManagerService$WallpaperData;
@@ -254,65 +196,17 @@
     .line 187
     iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->this$0:Lcom/android/server/WallpaperManagerService;
 
-    iget-object v0, v0, Lcom/android/server/WallpaperManagerService;->mInjector:Lcom/android/server/WallpaperManagerService$Injector;
-
     iget-object v1, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaper:Lcom/android/server/WallpaperManagerService$WallpaperData;
-
-    invoke-virtual {v0, v1}, Lcom/android/server/WallpaperManagerService$Injector;->genSaveSettingsLocked(Lcom/android/server/WallpaperManagerService$WallpaperData;)V
-
-    .line 193
-    :cond_3
-    iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mLockscreenWallpaperFile:Ljava/io/File;
-
-    invoke-virtual {v0, v7}, Ljava/io/File;->equals(Ljava/lang/Object;)Z
-
-    move-result v0
-
-    if-eqz v0, :cond_6
 
     .line 194
-    iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->this$0:Lcom/android/server/WallpaperManagerService;
-
-    iget-object v1, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaper:Lcom/android/server/WallpaperManagerService$WallpaperData;
-
-    #calls: Lcom/android/server/WallpaperManagerService;->notifyLockscreenCallbacksLocked(Lcom/android/server/WallpaperManagerService$WallpaperData;)V
+    #calls: Lcom/android/server/WallpaperManagerService;->saveSettingsLocked(Lcom/android/server/WallpaperManagerService$WallpaperData;)V
     invoke-static {v0, v1}, Lcom/android/server/WallpaperManagerService;->access$200(Lcom/android/server/WallpaperManagerService;Lcom/android/server/WallpaperManagerService$WallpaperData;)V
 
     .line 195
-    if-ne p1, v11, :cond_4
-
-    iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaper:Lcom/android/server/WallpaperManagerService$WallpaperData;
-
-    iget-boolean v0, v0, Lcom/android/server/WallpaperManagerService$WallpaperData;->mImageLockscreenPending:Z
-
-    if-eqz v0, :cond_6
-
-    .line 196
-    :cond_4
-    if-ne p1, v11, :cond_5
-
-    .line 197
-    iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaper:Lcom/android/server/WallpaperManagerService$WallpaperData;
-
-    const/4 v1, 0x0
-
-    iput-boolean v1, v0, Lcom/android/server/WallpaperManagerService$WallpaperData;->mImageLockscreenPending:Z
-
-    .line 199
-    :cond_5
-    iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->this$0:Lcom/android/server/WallpaperManagerService;
-
-    iget-object v0, v0, Lcom/android/server/WallpaperManagerService;->mInjector:Lcom/android/server/WallpaperManagerService$Injector;
-
-    iget-object v1, p0, Lcom/android/server/WallpaperManagerService$WallpaperObserver;->mWallpaper:Lcom/android/server/WallpaperManagerService$WallpaperData;
-
-    invoke-virtual {v0, v1}, Lcom/android/server/WallpaperManagerService$Injector;->genSaveSettingsLocked(Lcom/android/server/WallpaperManagerService$WallpaperData;)V
-
-    .line 203
-    :cond_6
+    :cond_3
     monitor-exit v10
 
-    goto/16 :goto_0
+    goto :goto_0
 
     .end local v6           #bm:Landroid/app/backup/BackupManager;
     .end local v7           #changedFile:Ljava/io/File;
@@ -326,3 +220,4 @@
 
     throw v0
 .end method
+

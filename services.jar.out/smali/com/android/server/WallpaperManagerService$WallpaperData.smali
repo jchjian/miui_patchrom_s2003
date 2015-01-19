@@ -34,30 +34,6 @@
 
 .field lastDiedTime:J
 
-.field mImageLockscreenPending:Z
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->NEW_FIELD:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
-.end field
-
-.field mLHeight:I
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->NEW_FIELD:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
-.end field
-
-.field mLWidth:I
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->NEW_FIELD:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
-.end field
-
-.field mLockscreenName:Ljava/lang/String;
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->NEW_FIELD:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
-.end field
-
 .field name:Ljava/lang/String;
 
 .field nextWallpaperComponent:Landroid/content/ComponentName;
@@ -92,17 +68,6 @@
     iput-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperData;->name:Ljava/lang/String;
 
     .line 242
-    const-string v0, ""
-
-    iput-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperData;->mLockscreenName:Ljava/lang/String;
-
-    .line 244
-    iput v1, p0, Lcom/android/server/WallpaperManagerService$WallpaperData;->mLWidth:I
-
-    .line 246
-    iput v1, p0, Lcom/android/server/WallpaperManagerService$WallpaperData;->mLHeight:I
-
-    .line 268
     new-instance v0, Landroid/os/RemoteCallbackList;
 
     invoke-direct {v0}, Landroid/os/RemoteCallbackList;-><init>()V
@@ -136,7 +101,7 @@
     return-void
 .end method
 
-.method static synthetic access$800(Lcom/android/server/WallpaperManagerService$WallpaperData;)Landroid/os/RemoteCallbackList;
+.method static synthetic access$300(Lcom/android/server/WallpaperManagerService$WallpaperData;)Landroid/os/RemoteCallbackList;
     .locals 1
     .parameter "x0"
 
@@ -146,3 +111,4 @@
 
     return-object v0
 .end method
+

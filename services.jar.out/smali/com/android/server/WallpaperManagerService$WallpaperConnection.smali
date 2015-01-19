@@ -232,9 +232,6 @@
     .locals 4
     .parameter "name"
     .parameter "service"
-    .annotation build Landroid/annotation/KiwiHook;
-        value = .enum Landroid/annotation/KiwiHook$KiwiHookType;->CHANGE_CODE:Landroid/annotation/KiwiHook$KiwiHookType;
-    .end annotation
 
     .prologue
     .line 299
@@ -278,11 +275,10 @@
     .line 308
     iget-object v0, p0, Lcom/android/server/WallpaperManagerService$WallpaperConnection;->this$0:Lcom/android/server/WallpaperManagerService;
 
-    iget-object v0, v0, Lcom/android/server/WallpaperManagerService;->mInjector:Lcom/android/server/WallpaperManagerService$Injector;
-
     iget-object v2, p0, Lcom/android/server/WallpaperManagerService$WallpaperConnection;->mWallpaper:Lcom/android/server/WallpaperManagerService$WallpaperData;
 
-    invoke-virtual {v0, v2}, Lcom/android/server/WallpaperManagerService$Injector;->genSaveSettingsLocked(Lcom/android/server/WallpaperManagerService$WallpaperData;)V
+    #calls: Lcom/android/server/WallpaperManagerService;->saveSettingsLocked(Lcom/android/server/WallpaperManagerService$WallpaperData;)V
+    invoke-static {v0, v2}, Lcom/android/server/WallpaperManagerService;->access$200(Lcom/android/server/WallpaperManagerService;Lcom/android/server/WallpaperManagerService$WallpaperData;)V
 
     .line 310
     :cond_0
@@ -370,7 +366,7 @@
 
     iget-wide v2, v0, Lcom/android/server/WallpaperManagerService$WallpaperData;->lastDiedTime:J
 
-    const-wide/16 v4, 0x1388
+    const-wide/16 v4, 0x2710
 
     add-long/2addr v2, v4
 
@@ -482,3 +478,4 @@
 
     throw v0
 .end method
+
