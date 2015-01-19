@@ -3,7 +3,7 @@
     <string name="applications_sort_type_title">Sort by</string>
     <string name="crt_screen_title">CRT lock screen effect</string>
     <string name="crt_screen_summary">We can have the effect like CRT display screen off after opening it.</string>
-    <string name="advanced_settings_title">Advanced_settings</string>
+    <string name="advanced_settings_title">Advanced settings</string>
     <string name="tab_operation_category_assistant">ASSISTANT</string>
     <string name="gesture_title">motion &amp; Gesture</string>
     <string name="mi_pop_title">Mi-Pop</string>
