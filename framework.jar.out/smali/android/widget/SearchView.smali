@@ -234,7 +234,7 @@
 
     .line 249
     .local v3, inflater:Landroid/view/LayoutInflater;
-    const v7, 0x2080010
+    const v7, 0x1090097
 
     invoke-virtual {v3, v7, p0, v11}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
 
