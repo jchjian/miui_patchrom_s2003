@@ -12,3 +12,6 @@ cp -rf stockrom/system/bin/installd out/target_files/SYSTEM/bin
 echo ">>> remove some not need jar files of vendor "
 rm -rf out/target_files/SYSTEM/framework/com.zte.ZTESecurity.jar
 rm -rf out/target_files/SYSTEM/framework/IZTESecurity.jar
+
+echo ">>> add some audio files "
+cp -rf other/system/media/* out/target_files/SYSTEM/media
