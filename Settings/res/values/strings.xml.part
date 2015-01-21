@@ -20,4 +20,5 @@
     <string name="pppoe_dial">Dial-up Internet access</string>
     <string name="sound_advanced_settings">Sound Advanced Settings</string>
     <string name="sound_advanced_summary">Dolby sound settings</string>
+    <string name="wifi_ap_stocksettings">Original WLAN hotspot settings</string>
 </resources>

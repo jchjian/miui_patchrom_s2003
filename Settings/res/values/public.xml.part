@@ -23,4 +23,5 @@
     <public type="string" name="pppoe_dial" id="0x7f080e6a" />
     <public type="string" name="sound_advanced_settings" id="0x7f080e6b" />
     <public type="string" name="sound_advanced_summary" id="0x7f080e6c" />
+    <public type="string" name="wifi_ap_stocksettings" id="0x7f080e6d" />
 </resources>

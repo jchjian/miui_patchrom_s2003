@@ -38,6 +38,9 @@
     <PreferenceScreen android:title="@string/sound_advanced_settings" android:summary="@string/sound_advanced_summary">
         <intent android:targetPackage="com.android.stocksettings" android:action="android.intent.action.MAIN" android:targetClass="com.android.stocksettings.SoundSettings" />
     </PreferenceScreen>
+    <PreferenceScreen android:title="@string/wifi_ap_stocksettings" android:key="wifi_ap_mode">
+        <intent android:targetPackage="com.android.stocksettings" android:action="android.intent.action.MAIN" android:targetClass="com.android.stocksettings.Settings$HotspotSettingsActivity" />
+    </PreferenceScreen>
     <PreferenceScreen android:title="@string/pppoe_dial" android:key="pppoe_mode">
         <intent android:targetPackage="com.android.stocksettings" android:action="android.intent.action.MAIN" android:targetClass="com.android.stocksettings.pppoe.PppoeSettings" />
     </PreferenceScreen>

@@ -20,4 +20,5 @@
     <string name="pppoe_dial">拨号上网</string>
     <string name="sound_advanced_settings">声音高级设置</string>
     <string name="sound_advanced_summary">杜比音效设置</string>
+    <string name="wifi_ap_stocksettings">原厂WLAN热点设置</string>
 </resources>
