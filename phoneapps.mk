@@ -12,6 +12,7 @@ private-phone-apps := AliveShow \
                                           com.qualcomm.services.location \
                                           DocumentsUI \
                                           fastdormancy \
+                                          FlashLight \
                                           FMRadio \
                                           GsmTuneAway \
                                           HandService \
