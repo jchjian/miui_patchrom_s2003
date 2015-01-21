@@ -1,0 +1,3 @@
+post-build=ZTE/P892S10/msm8226:4.4.2/KVT49L/eng.ztetd.20140910.132433:user/release-keys
+post-timestamp=1410326874
+pre-device=msm8226
